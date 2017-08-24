@@ -98,13 +98,36 @@ namespace GamesWithGravitas
 			}
 		}
 
-		public class Notifier : INotifyPropertyChanged
+        [Theory]
+        [InlineData("Foo")]
+        [InlineData("Bar")]
+        [InlineData("Baz")]
+        [InlineData("Foo", "Bar")]
+        [InlineData("Foo", "Bar", "Baz")]
+        public void DisposingUnsubscribes(params string[] propertyNames)
+        {
+            var notifier = new Notifier();
+            var listener = notifier.ListenForPropertyChanged(propertyNames);
+            listener.Dispose();
+
+            Assert.True(notifier.IsPropertyChangedNull);
+            foreach (var propertyName in propertyNames)
+            {
+                notifier.RaisePropertyChanged(propertyName);
+            };
+            Assert.False(listener.AllTrue);
+        }
+
+        public class Notifier : INotifyPropertyChanged
 		{
 			public void RaisePropertyChanged(string propertyName)
 			{
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 			}
+
 			public event PropertyChangedEventHandler PropertyChanged;
+
+            public bool IsPropertyChangedNull => PropertyChanged == null;
 		}
 	}
 }
