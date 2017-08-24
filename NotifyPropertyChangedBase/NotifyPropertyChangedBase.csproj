@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <RootNamespace>GamesWithGravitas</RootNamespace>
     <AssemblyName>GamesWithGravitas.NotifyPropertyChangedBase</AssemblyName>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Oliver Brown</Authors>
     <Company />
@@ -15,5 +15,24 @@
     <RepositoryUrl>https://github.com/GalaxiaGuy/PropertyChangedBase</RepositoryUrl>
     <Copyright>Oliver Brown</Copyright>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="NotifyPropertyChangedBase.ValueTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NotifyPropertyChangedBase.ValueTypes.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="NotifyPropertyChangedBase.ValueTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NotifyPropertyChangedBase.ValueTypes.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 </Project>

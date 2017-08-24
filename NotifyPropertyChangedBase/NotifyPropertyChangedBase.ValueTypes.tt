@@ -1,0 +1,28 @@
+﻿<#@ output extension=".cs" #>
+<#  
+var types = new string[] { "bool", "byte", "short", "int", "long", "float", "double", "decimal", "TimeSpan", "DateTime", "DateTimeOffset" };
+#>
+using System;
+using System.Runtime.CompilerServices;
+
+namespace GamesWithGravitas
+{
+	public partial class NotifyPropertyChangedBase
+	{
+
+<# foreach (var type in types) { #>
+	    protected bool SetProperty(ref <#=type#> field, <#=type#> value, [CallerMemberName] string whichProperty = null, params string[] otherProperties)
+        {
+            if (field == value)
+            {
+                return false;
+            }
+            field = value;
+            OnPropertyChanged(whichProperty);
+            OnPropertyChanged(otherProperties);
+            return true;
+        }
+
+<# } #>
+	}
+}
