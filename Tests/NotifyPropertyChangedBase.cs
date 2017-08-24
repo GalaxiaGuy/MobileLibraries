@@ -7,11 +7,10 @@ namespace GamesWithGravitas
 {
     public class NotifyPropertyChangedBaseTests
     {
-        [Theory]
-        [InlineData("Foo")]
-        [InlineData("Bar")]
-        public void SettingStringPropertyWorks(string propertyValue)
+        [Fact]
+        public void SettingPropertyWorks()
         {
+            var propertyValue = "Foo";
             var notifier = new Notifier();
             var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty));
 
@@ -19,6 +18,78 @@ namespace GamesWithGravitas
 
             Assert.Equal(propertyValue, notifier.StringProperty);
             Assert.True(listener.AllTrue);
+        }
+
+        [Fact]
+        public void SettingDependentPropertyWorks()
+        {
+            var propertyValue = "Foo";
+            var notifier = new Notifier();
+            var listener = notifier.ListenForPropertyChanged(nameof(Notifier.DependentProperty), nameof(Notifier.DerivedProperty));
+
+            notifier.DependentProperty = propertyValue;
+
+            Assert.Equal(propertyValue, notifier.DependentProperty);
+            Assert.Equal(propertyValue + "!", notifier.DerivedProperty);
+            Assert.True(listener.AllTrue);
+        }
+
+        [Fact]
+        public void SettingPropertyTwiceWorks()
+        {
+            var propertyValue1 = "Foo";
+            var propertyValue2 = "Bar";
+            var notifier = new Notifier();
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty)))
+            {
+                notifier.StringProperty = propertyValue1;
+
+                Assert.Equal(propertyValue1, notifier.StringProperty);
+                Assert.True(listener.AllTrue);
+            }
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty)))
+            {
+                notifier.StringProperty = propertyValue2;
+
+                Assert.Equal(propertyValue2, notifier.StringProperty);
+                Assert.True(listener.AllTrue);
+            }
+        }
+
+        [Fact]
+        public void SettingPropertyToSelfWorks()
+        {
+            var propertyValue = default(string);
+            var notifier = new Notifier();
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty)))
+            {
+                notifier.StringProperty = propertyValue;
+
+                Assert.Equal(propertyValue, notifier.StringProperty);
+                Assert.False(listener.AllTrue);
+            }
+        }
+
+        [Theory]
+        [InlineData("Foo")]
+        [InlineData("Bar")]
+        public void SettingStringPropertyWorks(string propertyValue)
+        {
+            var notifier = new Notifier();
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty)))
+            {
+                notifier.StringProperty = propertyValue;
+
+                Assert.Equal(propertyValue, notifier.StringProperty);
+                Assert.True(listener.AllTrue);
+            }
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.StringProperty)))
+            {
+                notifier.StringProperty = propertyValue;
+
+                Assert.Equal(propertyValue, notifier.StringProperty);
+                Assert.False(listener.AllTrue);
+            }
         }
 
         [Fact]
@@ -85,21 +156,6 @@ namespace GamesWithGravitas
             notifier.GuidProperty = propertyValue;
 
             Assert.Equal(propertyValue, notifier.GuidProperty);
-            Assert.True(listener.AllTrue);
-        }
-
-        [Theory]
-        [InlineData("Foo")]
-        [InlineData("Bar")]
-        public void SettingDependentPropertyWorks(string propertyValue)
-        {
-            var notifier = new Notifier();
-            var listener = notifier.ListenForPropertyChanged(nameof(Notifier.DependentProperty), nameof(Notifier.DerivedProperty));
-
-            notifier.DependentProperty = propertyValue;
-
-            Assert.Equal(propertyValue, notifier.DependentProperty);
-            Assert.Equal(propertyValue + "!", notifier.DerivedProperty);
             Assert.True(listener.AllTrue);
         }
     }
