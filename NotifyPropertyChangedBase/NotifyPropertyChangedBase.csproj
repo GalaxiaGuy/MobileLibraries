@@ -10,6 +10,10 @@
     <Company />
     <AssemblyVersion>0.0.1.0</AssemblyVersion>
     <FileVersion>0.0.1.0</FileVersion>
+    <Product>NotifyPropertyChangedBase</Product>
+    <Description>A base implementation of INotifyPropertyChanged, and an extension to add testing INotifyPropertyChanged</Description>
+    <RepositoryUrl>https://github.com/GalaxiaGuy/PropertyChangedBase</RepositoryUrl>
+    <Copyright>Oliver Brown</Copyright>
   </PropertyGroup>
 
 </Project>
