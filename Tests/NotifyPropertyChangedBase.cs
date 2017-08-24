@@ -1,7 +1,6 @@
 ﻿using System;
 using GamesWithGravitas.Extensions;
 using Xunit;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace GamesWithGravitas
@@ -76,6 +75,19 @@ namespace GamesWithGravitas
             Assert.True(listener.AllTrue);
         }
 
+        [Fact]
+        public void SettingGuidPropertyWorks()
+        {
+            var propertyValue = Guid.NewGuid();
+            var notifier = new Notifier();
+            var listener = notifier.ListenForPropertyChanged(nameof(Notifier.GuidProperty));
+
+            notifier.GuidProperty = propertyValue;
+
+            Assert.Equal(propertyValue, notifier.GuidProperty);
+            Assert.True(listener.AllTrue);
+        }
+
         [Theory]
         [InlineData("Foo")]
         [InlineData("Bar")]
@@ -127,6 +139,13 @@ namespace GamesWithGravitas
         {
             get => _intProperty;
             set => SetProperty(ref _intProperty, value);
+        }
+
+        private Guid _guidProperty;
+        public Guid GuidProperty
+        {
+            get => _guidProperty;
+            set => SetProperty(ref _guidProperty, value);
         }
 
         private string _dependentProperty;

@@ -1,6 +1,6 @@
 ﻿<#@ output extension=".cs" #>
 <#  
-var types = new string[] { "bool", "byte", "short", "int", "long", "float", "double", "decimal", "TimeSpan", "DateTime", "DateTimeOffset" };
+var types = new string[] { "bool", "byte", "short", "int", "long", "float", "double", "decimal", "TimeSpan", "DateTime", "DateTimeOffset", "Guid" };
 #>
 using System;
 using System.Runtime.CompilerServices;

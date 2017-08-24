@@ -138,5 +138,17 @@ namespace GamesWithGravitas
             return true;
         }
 
+	    protected bool SetProperty(ref Guid field, Guid value, [CallerMemberName] string whichProperty = null, params string[] otherProperties)
+        {
+            if (field == value)
+            {
+                return false;
+            }
+            field = value;
+            OnPropertyChanged(whichProperty);
+            OnPropertyChanged(otherProperties);
+            return true;
+        }
+
 	}
 }
