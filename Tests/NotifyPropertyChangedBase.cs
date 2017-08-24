@@ -57,6 +57,29 @@ namespace GamesWithGravitas
         }
 
         [Fact]
+        public void SettingPropertyWithCheckWorks()
+        {
+            var propertyValue1 = "Foo";
+            var propertyValue2 = "Bar";
+            var notifier = new Notifier();
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.CheckingProperty)))
+            {
+                notifier.CheckingProperty = propertyValue1;
+                Assert.Equal(1, notifier.CheckingPropertySetCount);
+            }
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.CheckingProperty)))
+            {
+                notifier.CheckingProperty = propertyValue2;
+                Assert.Equal(2, notifier.CheckingPropertySetCount);
+            }
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.CheckingProperty)))
+            {
+                notifier.CheckingProperty = propertyValue2;
+                Assert.Equal(2, notifier.CheckingPropertySetCount);
+            }
+        }
+
+        [Fact]
         public void SettingPropertyToSelfWorks()
         {
             var propertyValue = default(string);
@@ -210,6 +233,21 @@ namespace GamesWithGravitas
             get => _dependentProperty;
             set => SetProperty(ref _dependentProperty, value, otherProperties: nameof(DerivedProperty));
         }
+
+        private string _checkingProperty;
+        public string CheckingProperty
+        {
+            get => _checkingProperty;
+            set
+            {
+                if (SetProperty(ref _checkingProperty, value))
+                {
+                    CheckingPropertySetCount++;
+                }
+            }
+        }
+
+        public int CheckingPropertySetCount { get; private set; }
 
         public string DerivedProperty => DependentProperty + "!";
     }
