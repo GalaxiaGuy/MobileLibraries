@@ -138,6 +138,29 @@ namespace GamesWithGravitas
             }
         }
 
+        [Theory]
+        [InlineData("Foo", 1)]
+        [InlineData("Bar", 2)]
+        public void SettingValueTuplePropertyWorks(string stringValue, int intValue)
+        {
+            var propertyValue = (stringValue, intValue);
+            var notifier = new Notifier();
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.ValueTupleProperty)))
+            {
+                notifier.ValueTupleProperty = propertyValue;
+
+                Assert.Equal(propertyValue, notifier.ValueTupleProperty);
+                Assert.True(listener.AllTrue);
+            }
+            using (var listener = notifier.ListenForPropertyChanged(nameof(Notifier.ValueTupleProperty)))
+            {
+                notifier.ValueTupleProperty = propertyValue;
+
+                Assert.Equal(propertyValue, notifier.ValueTupleProperty);
+                Assert.False(listener.AllTrue);
+            }
+        }
+
         [Fact]
         public void SettingObjectPropertyWorks()
         {
@@ -248,6 +271,13 @@ namespace GamesWithGravitas
         {
             get => _tupleProperty;
             set => SetProperty(ref _tupleProperty, value);
+        }
+
+        private (string, int) _valueTupleProperty;
+        public (string, int) ValueTupleProperty
+        {
+            get => _valueTupleProperty;
+            set => SetProperty(ref _valueTupleProperty, value);
         }
 
         private Guid _guidProperty;

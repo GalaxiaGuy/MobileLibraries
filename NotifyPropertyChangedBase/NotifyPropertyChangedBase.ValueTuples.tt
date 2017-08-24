@@ -1,0 +1,28 @@
+﻿<#@ output extension=".cs" #>
+<#  
+var types = new string[] { "T1", "T1, T2", "T1, T2, T3", "T1, T2, T3, T4", "T1, T2, T3, T4, T5", "T1, T2, T3, T4, T5, T6", "T1, T2, T3, T4, T5, T6, T7" };
+#>
+using System;
+using System.Runtime.CompilerServices;
+
+namespace GamesWithGravitas
+{
+	public partial class NotifyPropertyChangedBase
+	{
+
+<# foreach (var type in types) { #>
+	    protected bool SetProperty<<#=type#>>(ref ValueTuple<<#=type#>> field, ValueTuple<<#=type#>> value, [CallerMemberName] string whichProperty = null, params string[] otherProperties)
+        {
+            if (field.Equals(value))
+            {
+                return false;
+            }
+            field = value;
+            OnPropertyChanged(whichProperty);
+            OnPropertyChanged(otherProperties);
+            return true;
+        }
+
+<# } #>
+	}
+}

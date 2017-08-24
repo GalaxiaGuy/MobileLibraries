@@ -15,11 +15,17 @@
     <RepositoryUrl>https://github.com/GalaxiaGuy/PropertyChangedBase</RepositoryUrl>
     <Copyright>Oliver Brown</Copyright>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
 
   <ItemGroup>
+    <None Update="NotifyPropertyChangedBase.ValueTuples.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="NotifyPropertyChangedBase.ValueTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NotifyPropertyChangedBase.ValueTypes.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -28,6 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="NotifyPropertyChangedBase.ValueTuples.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NotifyPropertyChangedBase.ValueTuples.tt</DependentUpon>
+    </Compile>
     <Compile Update="NotifyPropertyChangedBase.ValueTypes.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
