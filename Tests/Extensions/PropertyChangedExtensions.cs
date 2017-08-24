@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Xunit;
 
-namespace GamesWithGravitas
+namespace GamesWithGravitas.Extensions
 {
 	public class PropertyChangedExtensionsTests
 	{
