@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyPropertyChangedBase", "NotifyPropertyChangedBase\NotifyPropertyChangedBase.csproj", "{8749F49B-7D4F-4C07-9E98-D6D2E03BEF04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyPropertyChangedBaseTests", "Tests\NotifyPropertyChangedBaseTests.csproj", "{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyPropertyChangedBaseTests", "NotifyPropertyChangedBaseTests\NotifyPropertyChangedBaseTests.csproj", "{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
