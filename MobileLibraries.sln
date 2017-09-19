@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyPropertyChangedBase",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyPropertyChangedBaseTests", "NotifyPropertyChangedBaseTests\NotifyPropertyChangedBaseTests.csproj", "{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.Layout", "XamarinForms.Layout\XamarinForms.Layout.csproj", "{8CEC693F-CE2C-45A8-8C8C-72635BD56151}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEC693F-CE2C-45A8-8C8C-72635BD56151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEC693F-CE2C-45A8-8C8C-72635BD56151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEC693F-CE2C-45A8-8C8C-72635BD56151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEC693F-CE2C-45A8-8C8C-72635BD56151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
