@@ -152,6 +152,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj">
+      <Project>{29cb75bd-63cb-4ef5-abea-9d40ed55e74d}</Project>
+      <Name>XamarinForms.SkiaSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinForms.Sample\XamarinForms.Sample.csproj">
       <Project>{b982c2b3-bcd9-495d-97d8-548fbb2d2c04}</Project>
       <Name>XamarinForms.Sample</Name>

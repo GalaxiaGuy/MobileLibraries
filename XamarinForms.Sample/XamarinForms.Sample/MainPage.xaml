@@ -1,11 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XamarinForms.Sample"
+             xmlns:local="clr-namespace:GamesWithGravitas.XamarinForms.Sample"
+             xmlns:gs="clr-namespace:GamesWithGravitas.XamarinForms.SkiaSharp;assembly=GamesWithGravitas.XamarinForms.SkiaSharp"
              x:Class="XamarinForms.Sample.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <gs:SKCanvasContentView>
+        <StackLayout>
+            <Label Text="Oooh"/>
+            <Label Text="Aaah"/>
+            <Label Text="Oooh"/>
+            <Label Text="Aaah"/>
+            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                <Label Text="Aaah"/>
+                <local:DebugCanvasChildView HorizontalOptions="FillAndExpand" BackgroundColor="Green" />
+            </StackLayout>
+            <Label Text="Oooh"/>
+            <Label Text="Aaah"/>
+            <Label Text="Oooh"/>
+            <Label Text="Aaah"/>
+        </StackLayout>
+    </gs:SKCanvasContentView>
 
 </ContentPage>
