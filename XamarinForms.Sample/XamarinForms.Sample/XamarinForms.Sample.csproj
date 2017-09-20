@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <RootNamespace>GamesWithGravitas.XamarinForms.Sample</RootNamespace>
+    <AssemblyName>GamesWithGravitas.XamarinForms.Sample</AssemblyName>
+    <PackageTargetFallback>
+      portable45-net45+win8+wpa81
+    </PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GamesWithGravitas.NotifyPropertyChangedBase" Version="0.0.3" />
+    <PackageReference Include="GamesWithGravitas.XamarinForms.Layout" Version="0.0.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.59.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="2.3.4.270" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="MainPage.xaml" />
+    <None Remove="App.xaml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="MainPage.xaml" />
+    <EmbeddedResource Include="App.xaml" />
+  </ItemGroup>
+
+</Project>
