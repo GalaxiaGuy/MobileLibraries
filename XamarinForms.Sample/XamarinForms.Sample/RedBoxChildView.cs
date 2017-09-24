@@ -8,7 +8,7 @@ using SkiaSharp.Views.Forms;
 
 namespace GamesWithGravitas.XamarinForms.Sample
 {
-    public class DebugCanvasChildView : SKCanvasChildView
+    public class RedBoxChildView : SKCanvasChildView
     {
         public override void Paint(SKSurface surface, SKImageInfo info)
         {

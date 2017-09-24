@@ -1,9 +1,4 @@
-﻿using GamesWithGravitas.XamarinForms.SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GamesWithGravitas.XamarinForms.Sample;
 using Xamarin.Forms;
 
 namespace XamarinForms.Sample
@@ -13,6 +8,7 @@ namespace XamarinForms.Sample
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel(Navigation);
         }
     }
 }

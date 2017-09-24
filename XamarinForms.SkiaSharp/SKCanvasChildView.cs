@@ -18,9 +18,15 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
-            if (propertyName == XProperty.PropertyName || propertyName == YProperty.PropertyName)
+            if (_canvasContentView == null)
             {
-                FindParentCanvasContentView();
+                if (propertyName == XProperty.PropertyName || 
+                    propertyName == YProperty.PropertyName ||
+                    propertyName == WidthProperty.PropertyName ||
+                    propertyName == HeightProperty.PropertyName)
+                {
+                    FindParentCanvasContentView();
+                }
             }
         }
 

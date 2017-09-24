@@ -2,24 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GamesWithGravitas.XamarinForms.Sample"
-             xmlns:gs="clr-namespace:GamesWithGravitas.XamarinForms.SkiaSharp;assembly=GamesWithGravitas.XamarinForms.SkiaSharp"
+             xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms;assembly=GamesWithGravitas.XamarinForms.Layout"
              x:Class="XamarinForms.Sample.MainPage">
-
-    <gs:SKCanvasContentView>
-        <StackLayout>
-            <Label Text="Oooh"/>
-            <Label Text="Aaah"/>
-            <Label Text="Oooh"/>
-            <Label Text="Aaah"/>
-            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                <Label Text="Aaah"/>
-                <local:DebugCanvasChildView HorizontalOptions="FillAndExpand" BackgroundColor="Green" />
-            </StackLayout>
-            <Label Text="Oooh"/>
-            <Label Text="Aaah"/>
-            <Label Text="Oooh"/>
-            <Label Text="Aaah"/>
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout gl:Layout.ItemsSource="{Binding Items}" VerticalOptions="Center">
+            <gl:Layout.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding Title}" Command="{Binding Command}"/>
+                </DataTemplate>
+            </gl:Layout.ItemTemplate>
         </StackLayout>
-    </gs:SKCanvasContentView>
+    </ScrollView>
 
 </ContentPage>

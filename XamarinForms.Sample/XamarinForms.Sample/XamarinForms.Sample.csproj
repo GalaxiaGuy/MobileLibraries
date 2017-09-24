@@ -19,11 +19,13 @@
   <ItemGroup>
     <None Remove="MainPage.xaml" />
     <None Remove="App.xaml" />
+    <None Remove="SkiaPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml" />
     <EmbeddedResource Include="App.xaml" />
+    <EmbeddedResource Include="SkiaPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>

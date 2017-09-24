@@ -13,7 +13,7 @@ namespace XamarinForms.Sample
         {
             InitializeComponent();
 
-            MainPage = new XamarinForms.Sample.MainPage();
+            MainPage = new NavigationPage(new XamarinForms.Sample.MainPage());
         }
 
         protected override void OnStart()

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-namespace GamesWithGravitas.XamarinForms
+namespace GamesWithGravitas.XamarinForms.Layout
 {
     public class Layout
     {
