@@ -10,10 +10,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1</Version>
     <Authors>Oliver Brown</Authors>
-    <Company>Oliver Brown</Company>
+    <Company>Games with Gravitas</Company>
     <Product>GamesWithGravitas Xamarin Forms Layouts</Product>
     <Description>A small collection of layouts for Xamarin Forms.</Description>
-    <PackageTags>Xamarin, Xamarin Forms</PackageTags>
+    <PackageTags>Xamarin Forms</PackageTags>
     <AssemblyVersion>0.0.3.0</AssemblyVersion>
     <FileVersion>0.0.3.0</FileVersion>
     <Copyright>Oliver Brown</Copyright>
