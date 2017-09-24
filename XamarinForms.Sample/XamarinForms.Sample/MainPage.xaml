@@ -4,14 +4,12 @@
              xmlns:local="clr-namespace:GamesWithGravitas.XamarinForms.Sample"
              xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
              x:Class="XamarinForms.Sample.MainPage">
-    <ScrollView VerticalOptions="FillAndExpand">
-        <StackLayout gl:Layout.ItemsSource="{Binding Items}" VerticalOptions="Center">
-            <gl:Layout.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding Title}" Command="{Binding Command}"/>
-                </DataTemplate>
-            </gl:Layout.ItemTemplate>
-        </StackLayout>
-    </ScrollView>
+    <StackLayout gl:Layout.ItemsSource="{Binding Items}" VerticalOptions="Center">
+        <gl:Layout.ItemTemplate>
+            <DataTemplate>
+                <Button Text="{Binding Title}" Command="{Binding Command}"/>
+            </DataTemplate>
+        </gl:Layout.ItemTemplate>
+    </StackLayout>
 
 </ContentPage>

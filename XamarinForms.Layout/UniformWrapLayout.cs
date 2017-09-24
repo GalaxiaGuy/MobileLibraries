@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
-namespace GamesWithGravitas.XamarinForms
+namespace GamesWithGravitas.XamarinForms.Layout
 {
     public class UniformWrapLayout : Layout<View>, IWrapElement
     {

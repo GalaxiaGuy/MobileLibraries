@@ -12,9 +12,15 @@ namespace GamesWithGravitas.XamarinForms.Sample
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SkiaPage : ContentPage
 	{
-		public SkiaPage ()
+		public SkiaPage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
+            animatedView.AnimateAsync();
 		}
+
+        private void ButtonClicked(object sender, EventHandler e)
+        {
+            animatedView.AnimateAsync();
+        }
 	}
 }

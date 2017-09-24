@@ -8,7 +8,7 @@
         <StackLayout>
             <Label FontSize="Large" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="SKCanvasContentView" />
             <sample:GradientChildView HeightRequest="200" HorizontalOptions="FillAndExpand"/>
-            <Grid HeightRequest="300">
+            <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -20,8 +20,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <sample:RedBoxChildView Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-                <sample:CompositeShaderChildView Grid.Row="1" Grid.Column="1"/>
+                <sample:CompositeShaderChildView Grid.Row="1" Grid.Column="1" x:Name="animatedView"/>
             </Grid>
+            <Button Text="Animate" Clicked="ButtonClicked"/>
         </StackLayout>
     </gs:SKCanvasContentView>
 </ContentPage>

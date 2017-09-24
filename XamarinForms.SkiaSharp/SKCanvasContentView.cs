@@ -1,8 +1,7 @@
-﻿using SkiaSharp;
+﻿using GamesWithGravitas.XamarinForms.Layout;
+using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace GamesWithGravitas.XamarinForms.SkiaSharp
@@ -28,8 +27,8 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             var layout = new LayerLayout();
             var contentView = new ContentView();
             contentView.SetBinding(ContentProperty, new Binding(nameof(CanvasContent), source: this));
-            layout.Children.Add(contentView);
             layout.Children.Add(_canvasView);
+            layout.Children.Add(contentView);
             Content = layout;
         }
 
@@ -56,6 +55,11 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         {
             _canvasChildren.RemoveWhere(c => c.Child == child);
             _canvasChildren.Add(new SKCanvasChild { X = (float)x, Y = (float)y, Z = z, Child = child });
+            _canvasView.InvalidateSurface();
+        }
+
+        public void InvalidateCanvas()
+        {
             _canvasView.InvalidateSurface();
         }
 

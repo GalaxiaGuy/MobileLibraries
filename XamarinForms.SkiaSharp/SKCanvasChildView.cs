@@ -18,7 +18,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
-            if (_canvasContentView == null)
+            if (CanvasContentView == null)
             {
                 if (propertyName == WidthProperty.PropertyName ||
                     propertyName == HeightProperty.PropertyName)
@@ -33,7 +33,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             }
         }
 
-        private SKCanvasContentView _canvasContentView;
+        protected SKCanvasContentView CanvasContentView { get; private set; }
 
         public abstract void Paint(SKSurface surface, SKImageInfo info);
 
@@ -56,8 +56,8 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
                     }
                     if (view.Parent is SKCanvasContentView canvasContentView)
                     {
-                        _canvasContentView = canvasContentView;
-                        _canvasContentView.RegisterChild(this, x, y, z);
+                        CanvasContentView = canvasContentView;
+                        CanvasContentView.RegisterChild(this, x, y, z);
                         return;
                     }
                     view = view.Parent as View;
