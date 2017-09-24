@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GamesWithGravitas.XamarinForms.Sample"
-             xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms;assembly=GamesWithGravitas.XamarinForms.Layout"
+             xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
              x:Class="XamarinForms.Sample.MainPage">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout gl:Layout.ItemsSource="{Binding Items}" VerticalOptions="Center">
