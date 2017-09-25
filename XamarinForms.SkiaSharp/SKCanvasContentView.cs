@@ -18,16 +18,16 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             set => SetValue(CanvasContentProperty, value);
         }
 
-        private SKCanvasView _canvasView;
+        public SKCanvasView CanvasView { get; private set; }
 
         public SKCanvasContentView()
         {
-            _canvasView = new SKCanvasView();
-            _canvasView.PaintSurface += OnPaintSurface;
+            CanvasView = new SKCanvasView();
+            CanvasView.PaintSurface += OnPaintSurface;
             var layout = new LayerLayout();
             var contentView = new ContentView();
             contentView.SetBinding(ContentProperty, new Binding(nameof(CanvasContent), source: this));
-            layout.Children.Add(_canvasView);
+            layout.Children.Add(CanvasView);
             layout.Children.Add(contentView);
             Content = layout;
         }
@@ -55,12 +55,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         {
             _canvasChildren.RemoveWhere(c => c.Child == child);
             _canvasChildren.Add(new SKCanvasChild { X = (float)x, Y = (float)y, Z = z, Child = child });
-            _canvasView.InvalidateSurface();
-        }
-
-        public void InvalidateCanvas()
-        {
-            _canvasView.InvalidateSurface();
+            CanvasView.InvalidateSurface();
         }
 
         private class SKCanvasChild

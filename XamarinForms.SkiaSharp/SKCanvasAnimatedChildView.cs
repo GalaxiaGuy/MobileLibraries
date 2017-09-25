@@ -40,7 +40,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             Parameter = 0;
             while (true)
             {
-                CanvasContentView?.InvalidateCanvas();
+                CanvasView.InvalidateSurface();
                 Parameter = stopwatch.ElapsedMilliseconds / (float)duration;
                 if (Parameter > 1)
                 {
