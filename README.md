@@ -2,7 +2,7 @@
 ## NotifyPropertyChangedBase
 An implementation of `INotifyPropertyChanged` that provides  `SetProperty` method that triggers the `PropertyChanged` event.
 
-`SetProperty` is overloaded for many types to avoid boxing, and includes an optional argument for providing multiple dependent properties that will change at the same time.
+`SetProperty` performs equality checking and is overloaded for many types to avoid boxing It includes an optional argument for providing multiple dependent properties that will change at the same time.
 
 Additionally returns a `bool` indicating whether the value was actually changed.
 
