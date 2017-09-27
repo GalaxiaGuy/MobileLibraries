@@ -53,7 +53,7 @@ public class PersonViewModel : NotifyPropertyChangedBase
 
 All the following assume you have something like the following in your XAML:
 
-`xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout">`
+`xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"`
 ## Layout.ItemsSource - Layout.ItemTemplate
 A pair of attached properties that allow databinding the children of any `Layout`.
 ```xml
@@ -69,7 +69,7 @@ A pair of attached properties that allow databinding the children of any `Layout
 </StackLayout>
 ```
 ## LayerLayout
-A `Layout` that displays all its children on top of each other. Each child is laid out with the size of the largest.
+A `Layout` that arranges all its children on top of each other. Each child is laid out with the size of the largest.
 ```xml
 <gwg:LayerLayout>
     <Image Source="my_background" />
