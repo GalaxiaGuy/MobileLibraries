@@ -50,38 +50,50 @@ public class PersonViewModel : NotifyPropertyChangedBase
 # GamesWithGravitas.XamarinForms.Layout
 ![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.XamarinForms.Layout.svg)
 ![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.XamarinForms.Layout.svg)
+
+All the following assume you have something like the following in your XAML:
+
+`xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout">`
 ## Layout.ItemsSource - Layout.ItemTemplate
 A pair of attached properties that allow databinding the children of any `Layout`.
 ```xml
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
-    x:Class="Sample.MyPage">
-    <StackLayout gwg:Layout.ItemsSource="{Binding People}">
-        <gwg:Layout.ItemTemplate>
-            <DataTemplate>
-                <StackLayout>
-                    <Label Text="{Binding FirstName}"/>
-                    <Label Text="{Binding LastName}"/>
-                </StakLayout>
-            </DataTemplate>
-        </gwg:Layout.ItemTemplate>
-    </StackLayout>
-</ContentPage>
+<StackLayout gwg:Layout.ItemsSource="{Binding People}">
+    <gwg:Layout.ItemTemplate>
+        <DataTemplate>
+            <StackLayout>
+                <Label Text="{Binding FirstName}"/>
+                <Label Text="{Binding LastName}"/>
+            </StakLayout>
+        </DataTemplate>
+    </gwg:Layout.ItemTemplate>
+</StackLayout>
 ```
 ## LayerLayout
-Docs coming soon.
+A `Layout` that displays all its children on top of each other. Each child is laid out with the size of the largest.
+```xml
+<gwg:LayerLayout>
+    <Image Source="my_background" />
+    <Text Label="Overload text" />
+</gwg:LayerLayout>
+```
 ## WrapLayout
-Docs coming soon.
+A `Layout` that behaves like a horizontal `StackLayout`, arranging children one after the other until they can no longer fit. Additional children are then placed on a new row.
+
+Each child will get at least the size it requests. If the child has `HorizontalOptions` set to include `Expand` it will be given more space in the same way it would when used in a `StackLayout`. Each child is given height equal to to the tallest child on the same row.
+
+_Example coming soon._
 ## UniformWrapLayout
-Docs coming soon.
-## UniformGridLayout
-Docs coming soon.
+A `Layout` that behaves like `WrapLayout`, except all children are the same width (`Expand` is ignored).
+
+_Example coming soon._
+## UniformGrid
+A `Layout` that behaves like `Grid`, except all cells are square. It will attempt to give every child the same space as the largest child.
+
+_Example coming soon._
 # GamesWithGravitas.XamarinForms.SkiaSharp
 ![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.XamarinForms.SkiaSharp.svg)
 ![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.XamarinForms.SkiaSharp.svg)
 ## SKCanvasContentView - SKCanvasChildView
-Docs coming soon.
+_Docs coming soon._
 ## SKCanvasAnimatedChildView
-Docs coming soon.
+_Docs coming soon._
