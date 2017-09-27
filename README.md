@@ -51,7 +51,26 @@ public class PersonViewModel : NotifyPropertyChangedBase
 ![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.XamarinForms.Layout.svg)
 ![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.XamarinForms.Layout.svg)
 ## Layout.ItemsSource - Layout.ItemTemplate
-Docs coming soon.
+A pair of attached properties that allow databinding the children of any `Layout`.
+```xml
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
+    x:Class="Sample.MyPage">
+>
+    <StackLayout gwg:Layout.ItemsSource="{Binding People}">
+        <gwg:Layout.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label Text="{Binding FirstName}"/>
+                    <Label Text="{Binding LastName}"/>
+                </StakLayout>
+            </DataTemplate>
+        </gwg:Layout.ItemTemplate>
+    </StackLayout>
+</ContentPage>
+```
 ## LayerLayout
 Docs coming soon.
 ## WrapLayout
