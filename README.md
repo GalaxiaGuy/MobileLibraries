@@ -58,7 +58,6 @@ A pair of attached properties that allow databinding the children of any `Layout
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:gwg="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
     x:Class="Sample.MyPage">
->
     <StackLayout gwg:Layout.ItemsSource="{Binding People}">
         <gwg:Layout.ItemTemplate>
             <DataTemplate>
