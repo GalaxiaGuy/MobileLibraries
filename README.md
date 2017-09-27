@@ -1,12 +1,12 @@
 # GamesWithGravitas.NotifyPropertyChangedBase
+![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.NotifyPropertyChangedBase.svg)
+![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.NotifyPropertyChangedBase.svg)
 ## NotifyPropertyChangedBase
 An implementation of `INotifyPropertyChanged` that provides  `SetProperty` method that triggers the `PropertyChanged` event.
 
 `SetProperty` performs equality checking and is overloaded for many types to avoid boxing It includes an optional argument for providing multiple dependent properties that will change at the same time.
 
 Additionally returns a `bool` indicating whether the value was actually changed.
-
-Available on [NuGet](https://www.nuget.org/packages/GamesWithGravitas.NotifyPropertyChangedBase/). Supports `.NETStandard 1.0`.
 
 ```csharp
 public class PersonViewModel : NotifyPropertyChangedBase
@@ -46,7 +46,10 @@ public class PersonViewModel : NotifyPropertyChangedBase
     }
 }
 ```
+
 # GamesWithGravitas.XamarinForms.Layout
+![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.XamarinForms.Layout.svg)
+![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.XamarinForms.Layout.svg)
 ## Layout.ItemsSource - Layout.ItemTemplate
 Docs coming soon.
 ## LayerLayout
@@ -58,6 +61,8 @@ Docs coming soon.
 ## UniformGridLayout
 Docs coming soon.
 # GamesWithGravitas.XamarinForms.SkiaSharp
+![Available on NuGet](https://img.shields.io/nuget/v/GamesWithGravitas.XamarinForms.SkiaSharp.svg)
+![Downloads](https://img.shields.io/nuget/dt/GamesWithGravitas.XamarinForms.SkiaSharp.svg)
 ## SKCanvasContentView - SKCanvasChildView
 Docs coming soon.
 ## SKCanvasAnimatedChildView
