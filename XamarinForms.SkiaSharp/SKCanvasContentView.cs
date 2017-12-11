@@ -22,7 +22,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
 
         public SKCanvasContentView()
         {
-            CanvasView = new SKCanvasView();
+            CanvasView = new SKCanvasView { IgnorePixelScaling = true };
             CanvasView.PaintSurface += OnPaintSurface;
             var layout = new LayerLayout();
             var contentView = new ContentView();
