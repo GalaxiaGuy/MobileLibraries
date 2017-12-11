@@ -74,6 +74,10 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             var y = 0d;
             int z = 0;
             int scale = 1;
+            if (view.X == -1 || view.Y == -1 || view.Width == -1 || view.Height == -1)
+            {
+                return;
+            }
             while (true)
             {
                 x += view.X;
