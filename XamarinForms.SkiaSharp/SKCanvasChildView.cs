@@ -13,19 +13,34 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         protected SKCanvasChildView()
         {
             _ownCanvasView = new Lazy<SKCanvasView>(() =>
-             {
-                 var canvas = new SKCanvasView();
-                 Content = canvas;
-                 return canvas;
-             });
+            {
+                var canvas = new SKCanvasView { IgnorePixelScaling = true };
+                Content = canvas;
+                return canvas;
+            });
         }
         public static readonly BindableProperty ProvideOwnCanvasViewProperty =
-            BindableProperty.Create(nameof(ProvideOwnCanvasView), typeof(bool), typeof(SKCanvasChildView), false);
+            BindableProperty.Create(nameof(ProvideOwnCanvasView), typeof(bool), typeof(SKCanvasChildView), false, propertyChanged: ProvideOwnCanvasViewPropertyChanged);
 
         public bool ProvideOwnCanvasView
         {
             get => (bool)GetValue(ProvideOwnCanvasViewProperty);
             set => SetValue(ProvideOwnCanvasViewProperty, value);
+        }
+
+        private static void ProvideOwnCanvasViewPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((SKCanvasChildView)bindable).SetupOwnCanvas();
+        }
+
+        private void SetupOwnCanvas()
+        {
+            CanvasView.PaintSurface += OnPaintSurface;
+        }
+
+        private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
+        {
+            Paint(e.Surface, e.Info);
         }
 
         private Lazy<SKCanvasView> _ownCanvasView;

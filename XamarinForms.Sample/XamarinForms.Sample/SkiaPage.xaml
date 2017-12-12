@@ -6,7 +6,11 @@
              x:Class="GamesWithGravitas.XamarinForms.Sample.SkiaPage">
     <gs:SKCanvasContentView>
         <StackLayout>
-            <Label FontSize="Large" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="SKCanvasContentView" />
+            <StackLayout Orientation="Horizontal">
+                <sample:BlueBoxChildView />
+                <Label FontSize="Large" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="SKCanvasContentView" />
+                <sample:BlueBoxChildView />
+            </StackLayout>
             <sample:GradientChildView HeightRequest="200" HorizontalOptions="FillAndExpand"/>
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
