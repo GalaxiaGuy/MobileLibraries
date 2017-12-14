@@ -143,19 +143,17 @@
     <Reference Include="SkiaSharp.Views.Forms">
       <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.1.1\lib\XamariniOS\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="GamesWithGravitas.XamarinForms.Layout">
+      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.Layout.0.0.3\lib\netstandard1.4\GamesWithGravitas.XamarinForms.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="GamesWithGravitas.XamarinForms.SkiaSharp">
+      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.SkiaSharp.0.0.5\lib\netstandard1.4\GamesWithGravitas.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinForms.Sample\XamarinForms.Sample.csproj">
       <Project>{867ECD70-7043-4DB3-8070-9D3A01486879}</Project>
       <Name>XamarinForms.Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\XamarinForms.Layout\XamarinForms.Layout.csproj">
-      <Project>{8CEC693F-CE2C-45A8-8C8C-72635BD56151}</Project>
-      <Name>XamarinForms.Layout</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj">
-      <Project>{29CB75BD-63CB-4EF5-ABEA-9D40ED55E74D}</Project>
-      <Name>XamarinForms.SkiaSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
