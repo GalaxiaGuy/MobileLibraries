@@ -45,7 +45,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
 
         private Lazy<SKCanvasView> _ownCanvasView;
 
-        protected SKCanvasView CanvasView => ProvideOwnCanvasView ? _ownCanvasView.Value : CanvasContentView.CanvasView;
+        protected SKCanvasView CanvasView => ProvideOwnCanvasView ? _ownCanvasView?.Value : CanvasContentView?.CanvasView;
 
         protected override void OnParentSet()
         {

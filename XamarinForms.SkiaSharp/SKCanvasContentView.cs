@@ -34,6 +34,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
 
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
+            e.Surface.Canvas.Clear(SKColor.Empty);
             foreach (var child in _canvasChildren)
             {
                 e.Surface.Canvas.Save();
