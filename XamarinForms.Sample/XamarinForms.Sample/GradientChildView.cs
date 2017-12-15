@@ -14,7 +14,7 @@ namespace GamesWithGravitas.XamarinForms.Sample
         {
             var canvas = surface.Canvas;
             var colors = new SKColor[] { new SKColor(0, 255, 255), new SKColor(255, 0, 255), new SKColor(255, 255, 0), new SKColor(0, 255, 255) };
-            var shader = SKShader.CreateLinearGradient(new SKPoint(0, 0), new SKPoint(255, 255), colors, null, SKShaderTileMode.Clamp);
+            var shader = SKShader.CreateLinearGradient(new SKPoint(0, 0), new SKPoint(info.Width, info.Height), colors, null, SKShaderTileMode.Clamp);
             var paint = new SKPaint() { Shader = shader };
             canvas.DrawPaint(paint);
         }

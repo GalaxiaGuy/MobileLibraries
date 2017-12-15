@@ -14,7 +14,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         {
             _ownCanvasView = new Lazy<SKCanvasView>(() =>
             {
-                var canvas = new SKCanvasView { IgnorePixelScaling = true };
+                var canvas = new SKCanvasView();
                 Content = canvas;
                 return canvas;
             });

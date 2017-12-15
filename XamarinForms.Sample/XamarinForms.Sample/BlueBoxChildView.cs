@@ -21,7 +21,7 @@ namespace GamesWithGravitas.XamarinForms.Sample
         {
             var paint = new SKPaint { Color = Color.Black.ToSKColor(), IsStroke = true, StrokeWidth=4 };
             surface.Canvas.Clear(Color.Blue.ToSKColor());
-            surface.Canvas.DrawRect(new SKRect(0, 0, (float)Width, (float)Height), paint);
+            surface.Canvas.DrawRect(new SKRect(0, 0, info.Width, info.Height), paint);
         }
     }
 }

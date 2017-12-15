@@ -14,7 +14,7 @@ namespace GamesWithGravitas.XamarinForms.Sample
         {
             var canvas = surface.Canvas;
             var colors = new SKColor[] { new SKColor(0, 255, 255), new SKColor(255, 0, 255), new SKColor(255, 255, 0), new SKColor(0, 255, 255) };
-            var sweep = SKShader.CreateSweepGradient(new SKPoint((int)(128 * Parameter), (int)(128 * Parameter)), colors, null);
+            var sweep = SKShader.CreateSweepGradient(new SKPoint((int)(info.Width * Parameter), (int)(info.Height * Parameter)), colors, null);
             var turbulence = SKShader.CreatePerlinNoiseTurbulence(0.05f, 0.05f, 4, 0);
             var shader = SKShader.CreateCompose(sweep, turbulence);
             var paint = new SKPaint() { Shader = shader };

@@ -22,7 +22,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
 
         public SKCanvasContentView()
         {
-            CanvasView = new SKCanvasView { IgnorePixelScaling = true };
+            CanvasView = new SKCanvasView();
             CanvasView.PaintSurface += OnPaintSurface;
             var layout = new LayerLayout();
             var contentView = new ContentView();
@@ -35,13 +35,19 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
             e.Surface.Canvas.Clear(SKColor.Empty);
+            var canvasView = (SKCanvasView)sender;
+            var pixelScale = canvasView.CanvasSize.Width / (float)canvasView.Width;
             foreach (var child in _canvasChildren)
             {
                 e.Surface.Canvas.Save();
-                e.Surface.Canvas.Translate(child.X, child.Y);
+                e.Surface.Canvas.Translate(child.X*pixelScale, child.Y* pixelScale);
 
                 var region = new SKRegion();
-                region.SetRect(new SKRectI((int)child.X, (int)child.Y, (int)child.Child.Width + (int)child.X, (int)child.Child.Height + (int)child.Y));
+                var x = child.X * pixelScale;
+                var y = child.Y * pixelScale;
+                var width = (child.Child.Width + child.X) * pixelScale;
+                var height = (child.Child.Height + child.Y) * pixelScale;
+                region.SetRect(new SKRectI((int)x, (int)y, (int)width, (int)height));
                 e.Surface.Canvas.ClipRegion(region);
 
                 child.Child.Paint(e.Surface, e.Info);

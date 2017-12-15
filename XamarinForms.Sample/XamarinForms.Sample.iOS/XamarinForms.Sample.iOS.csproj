@@ -147,7 +147,7 @@
       <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.Layout.0.0.3\lib\netstandard1.4\GamesWithGravitas.XamarinForms.Layout.dll</HintPath>
     </Reference>
     <Reference Include="GamesWithGravitas.XamarinForms.SkiaSharp">
-      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.SkiaSharp.0.0.5\lib\netstandard1.4\GamesWithGravitas.XamarinForms.SkiaSharp.dll</HintPath>
+      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.SkiaSharp.0.0.7\lib\netstandard1.4\GamesWithGravitas.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
