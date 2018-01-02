@@ -12,8 +12,12 @@
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.59.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.3.4.270" />
-    <PackageReference Include="GamesWithGravitas.XamarinForms.Layout" Version="0.0.3" />
-    <PackageReference Include="GamesWithGravitas.XamarinForms.SkiaSharp" Version="0.0.7" />
+    <PackageReference Include="GamesWithGravitas.XamarinForms.Layout" Version="0.0.3">
+      <ExcludeAssets>All</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="GamesWithGravitas.XamarinForms.SkiaSharp" Version="0.0.7">
+      <ExcludeAssets>All</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,5 +40,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NotifyPropertyChangedBase\NotifyPropertyChangedBase.csproj" />
+    <ProjectReference Include="..\..\XamarinForms.Layout\XamarinForms.Layout.csproj" />
+    <ProjectReference Include="..\..\XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj" />
   </ItemGroup>
 </Project>
