@@ -12,7 +12,8 @@ namespace GamesWithGravitas.XamarinForms.Sample
         {
             Items = new List<DemoItem>
             {
-                new DemoItem("SKCanvasContentView and SKCanvasChildView", async () => await navigation.PushAsync(new SkiaPage()))
+                new DemoItem("SKCanvasContentView and SKCanvasChildView", async () => await navigation.PushAsync(new SkiaPage())),
+                new DemoItem("Layout.ItemsSource", async () => await navigation.PushAsync(new StackLayoutPage()))
             };
         }
 

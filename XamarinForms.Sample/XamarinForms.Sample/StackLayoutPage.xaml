@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
+             x:Class="GamesWithGravitas.XamarinForms.Sample.StackLayoutPage">
+    <StackLayout Padding="20">
+        <Label Text="StackLayout with bound ItemsSource" FontSize="24"/>
+        <StackLayout gl:Layout.ItemsSource="{Binding Items}">
+            <gl:Layout.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}"/>
+                </DataTemplate>
+            </gl:Layout.ItemTemplate>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

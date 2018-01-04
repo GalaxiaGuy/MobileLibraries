@@ -24,16 +24,24 @@
     <None Remove="MainPage.xaml" />
     <None Remove="App.xaml" />
     <None Remove="SkiaPage.xaml" />
+    <None Remove="StackLayoutPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="SkiaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StackLayoutPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
