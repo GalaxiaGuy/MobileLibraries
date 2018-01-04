@@ -13,11 +13,17 @@ namespace GamesWithGravitas.XamarinForms.Layout
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.CreateAttached("ItemTemplate", typeof(DataTemplate), typeof(ItemsView<View>), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
 
+        public static readonly BindableProperty SeparatorTemplateProperty =
+            BindableProperty.CreateAttached("SeparatorTemplate", typeof(DataTemplate), typeof(ItemsView<View>), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
+
         public static IEnumerable GetItemsSource(BindableObject bindable) => (IEnumerable)bindable.GetValue(ItemsSourceProperty);
         public static void SetItemsSource(BindableObject bindable, IEnumerable value) => bindable.SetValue(ItemsSourceProperty, value);
 
         public static DataTemplate GetItemTemplate(BindableObject bindable) => (DataTemplate)bindable.GetValue(ItemTemplateProperty);
         public static void SetItemTemplate(BindableObject bindable, DataTemplate value) => bindable.SetValue(ItemTemplateProperty, value);
+
+        public static DataTemplate GetSeparatorTemplate(BindableObject bindable) => (DataTemplate)bindable.GetValue(SeparatorTemplateProperty);
+        public static void SetSeparatorTemplate(BindableObject bindable, DataTemplate value) => bindable.SetValue(SeparatorTemplateProperty, value);
 
         private static readonly BindableProperty CollectionChangedListenerProperty =
             BindableProperty.CreateAttached("CollectionChangedListener", typeof(CollectionChangedListener), typeof(ItemsView<View>), null, propertyChanging: OnCollectionChangedListenerChanging);
@@ -34,13 +40,28 @@ namespace GamesWithGravitas.XamarinForms.Layout
                 return;
             }
 
+            var separatorTemplate = GetSeparatorTemplate(layout);
+            var hasSeparators = separatorTemplate != null;
+
             layout.Children.Clear();
+
+            View separator = null;
 
             foreach (var item in items)
             {
                 var child = (View)template.CreateContent();
                 child.BindingContext = item;
                 layout.Children.Add(child);
+                if (hasSeparators)
+                {
+                    separator = (View)separatorTemplate.CreateContent();
+                    layout.Children.Add(separator);
+                }
+            }
+
+            if (hasSeparators && separator != null)
+            {
+                layout.Children.Remove(separator);
             }
 
             if (items is INotifyCollectionChanged collection)

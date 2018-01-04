@@ -4,13 +4,26 @@
              xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
              x:Class="GamesWithGravitas.XamarinForms.Sample.StackLayoutPage">
     <StackLayout Padding="20">
-        <Label Text="StackLayout with bound ItemsSource" FontSize="24"/>
+        <Label Text="Bound ItemsSource" FontSize="24"/>
         <StackLayout gl:Layout.ItemsSource="{Binding Items}">
             <gl:Layout.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding}"/>
                 </DataTemplate>
             </gl:Layout.ItemTemplate>
+        </StackLayout>
+        <Label Text="Separators" FontSize="24"/>
+        <StackLayout gl:Layout.ItemsSource="{Binding Items}">
+            <gl:Layout.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}"/>
+                </DataTemplate>
+            </gl:Layout.ItemTemplate>
+            <gl:Layout.SeparatorTemplate>
+                <DataTemplate>
+                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                </DataTemplate>
+            </gl:Layout.SeparatorTemplate>
         </StackLayout>
     </StackLayout>
 </ContentPage>
