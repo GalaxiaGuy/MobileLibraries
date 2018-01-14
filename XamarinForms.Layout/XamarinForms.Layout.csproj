@@ -8,14 +8,14 @@
       portable45-net45+win8+wpa81
     </PackageTargetFallback>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.7</Version>
+    <Version>0.0.8</Version>
     <Authors>Oliver Brown</Authors>
     <Company>Games with Gravitas</Company>
     <Product>GamesWithGravitas Xamarin Forms Layouts</Product>
     <Description>A small collection of layouts for Xamarin Forms.</Description>
     <PackageTags>Xamarin Forms</PackageTags>
-    <AssemblyVersion>0.0.7.0</AssemblyVersion>
-    <FileVersion>0.0.7.0</FileVersion>
+    <AssemblyVersion>0.0.8.0</AssemblyVersion>
+    <FileVersion>0.0.8.0</FileVersion>
     <Copyright>Oliver Brown</Copyright>
     <RepositoryUrl>https://github.com/GalaxiaGuy/MobileLibraries</RepositoryUrl>
     <PackageIconUrl>https://github.com/GalaxiaGuy/MobileLibraries/blob/master/gwg.png?raw=true</PackageIconUrl>

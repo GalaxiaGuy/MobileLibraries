@@ -3,35 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:gl="clr-namespace:GamesWithGravitas.XamarinForms.Layout;assembly=GamesWithGravitas.XamarinForms.Layout"
              x:Class="GamesWithGravitas.XamarinForms.Sample.StackLayoutPage">
-    <StackLayout Padding="20">
-        <Label Text="Bound ItemsSource" FontSize="24"/>
-        <StackLayout gl:Layout.ItemsSource="{Binding Items}">
-            <gl:Layout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding}"/>
-                </DataTemplate>
-            </gl:Layout.ItemTemplate>
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Bound ItemsSource" FontSize="24"/>
+            <StackLayout gl:Layout.ItemsSource="{Binding Items}">
+                <gl:Layout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}"/>
+                    </DataTemplate>
+                </gl:Layout.ItemTemplate>
+            </StackLayout>
+            <Label Text="Separators" FontSize="24"/>
+            <StackLayout gl:Layout.ItemsSource="{Binding Items}">
+                <gl:Layout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}"/>
+                    </DataTemplate>
+                </gl:Layout.ItemTemplate>
+                <gl:Layout.SeparatorTemplate>
+                    <DataTemplate>
+                        <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                    </DataTemplate>
+                </gl:Layout.SeparatorTemplate>
+            </StackLayout>
+            <Label Text="UniformWrapLayout ChildMaximumWidth" FontSize="24"/>
+            <gl:UniformWrapLayout gl:Layout.ItemsSource="{Binding LongItems}" ChildMaximumWidth="200">
+                <gl:Layout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}"/>
+                    </DataTemplate>
+                </gl:Layout.ItemTemplate>
+            </gl:UniformWrapLayout>
         </StackLayout>
-        <Label Text="Separators" FontSize="24"/>
-        <StackLayout gl:Layout.ItemsSource="{Binding Items}">
-            <gl:Layout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding}"/>
-                </DataTemplate>
-            </gl:Layout.ItemTemplate>
-            <gl:Layout.SeparatorTemplate>
-                <DataTemplate>
-                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
-                </DataTemplate>
-            </gl:Layout.SeparatorTemplate>
-        </StackLayout>
-        <Label Text="UniformWrapLayout ChildMaximumWidth" FontSize="24"/>
-        <gl:UniformWrapLayout gl:Layout.ItemsSource="{Binding LongItems}" ChildMaximumWidth="200">
-            <gl:Layout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding}"/>
-                </DataTemplate>
-            </gl:Layout.ItemTemplate>
-        </gl:UniformWrapLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

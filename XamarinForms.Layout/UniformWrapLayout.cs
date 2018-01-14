@@ -46,12 +46,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
             double rowHeight = 0;
 
             var childMaximumWidth = ChildMaximumWidth;
+            var childWidthConstraint = Math.Min(widthConstraint, childMaximumWidth);
 
             foreach (var child in Children)
             {
-                var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
-                var childWidth = Math.Min(childMaximumWidth, sizeRequest.Request.Width);    
-                columnWidth = Math.Max(columnWidth, childWidth);
+                var sizeRequest = child.Measure(childWidthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
+                columnWidth = Math.Max(columnWidth, sizeRequest.Request.Width);
                 rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
             }
 
