@@ -5,8 +5,11 @@ namespace GamesWithGravitas.XamarinForms.Layout
 {
     public class UniformWrapLayout : Layout<View>, IWrapElement
     {
-        public static BindableProperty ColumnSpacingProperty = WrapElement.ColumnSpacingProperty;
-        public static BindableProperty RowSpacingProperty = WrapElement.RowSpacingProperty;
+        public static readonly BindableProperty ColumnSpacingProperty = WrapElement.ColumnSpacingProperty;
+        public static readonly BindableProperty RowSpacingProperty = WrapElement.RowSpacingProperty;
+
+        public static readonly BindableProperty ChildMaximumWidthProperty =
+            BindableProperty.Create(nameof(ChildMaximumWidth), typeof(double), typeof(UniformWrapLayout), double.PositiveInfinity);
 
         public double ColumnSpacing
         {
@@ -18,6 +21,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
         {
             get => (double)GetValue(RowSpacingProperty);
             set => SetValue(RowSpacingProperty, value);
+        }
+
+        public double ChildMaximumWidth
+        {
+            get => (double)GetValue(ChildMaximumWidthProperty);
+            set => SetValue(ChildMaximumWidthProperty, value);
         }
 
         void IWrapElement.InvalidateLayout() => InvalidateLayout();
@@ -36,7 +45,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
             double columnWidth = 0;
             double rowHeight = 0;
 
-            var childMaximumWidth = WrapElement.GetChildMaximumWidth(this);
+            var childMaximumWidth = ChildMaximumWidth;
 
             foreach (var child in Children)
             {
