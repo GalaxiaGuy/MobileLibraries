@@ -9,6 +9,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         public static BindableProperty RowSpacingProperty = 
             BindableProperty.Create(nameof(IWrapElement.RowSpacing), typeof(double), typeof(WrapElement), Grid.RowSpacingProperty.DefaultValue, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
+
+        public static BindableProperty ChildMaximumWidthProperty =
+            BindableProperty.CreateAttached("ChildMaximumWidth", typeof(double), typeof(WrapElement), double.PositiveInfinity);
+
+        public static double GetChildMaximumWidth(BindableObject wrap) => (double)wrap.GetValue(ChildMaximumWidthProperty);
+        public static void SetChildMaximumWidth(BindableObject wrap, double value) => wrap.SetValue(ChildMaximumWidthProperty, value);
     }
 
     public interface IWrapElement

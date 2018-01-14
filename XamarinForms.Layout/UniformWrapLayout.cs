@@ -36,10 +36,13 @@ namespace GamesWithGravitas.XamarinForms.Layout
             double columnWidth = 0;
             double rowHeight = 0;
 
+            var childMaximumWidth = WrapElement.GetChildMaximumWidth(this);
+
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
-                columnWidth = Math.Max(columnWidth, sizeRequest.Request.Width);
+                var childWidth = Math.Min(childMaximumWidth, sizeRequest.Request.Width);    
+                columnWidth = Math.Max(columnWidth, childWidth);
                 rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
             }
 

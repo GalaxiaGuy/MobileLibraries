@@ -13,7 +13,7 @@
             </gl:Layout.ItemTemplate>
         </StackLayout>
         <Label Text="Separators" FontSize="24"/>
-        <StackLayout gl:Layout.ItemsSource="{Binding Items}">
+        <StackLayout gl:Layout.ItemsSource="{Binding Items}" gl:WrapElement.ChildMaximumWidth="100">
             <gl:Layout.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding}"/>
@@ -25,5 +25,13 @@
                 </DataTemplate>
             </gl:Layout.SeparatorTemplate>
         </StackLayout>
+        <Label Text="UniformWrapLayout ChildMaximumWidth" FontSize="24"/>
+        <gl:UniformWrapLayout gl:Layout.ItemsSource="{Binding Items}">
+            <gl:Layout.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}"/>
+                </DataTemplate>
+            </gl:Layout.ItemTemplate>
+        </gl:UniformWrapLayout>
     </StackLayout>
 </ContentPage>
