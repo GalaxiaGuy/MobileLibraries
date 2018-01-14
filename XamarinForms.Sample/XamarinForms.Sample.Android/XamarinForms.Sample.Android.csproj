@@ -48,6 +48,12 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GamesWithGravitas.XamarinForms.Layout, Version=0.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.Layout.0.0.5\lib\netstandard1.4\GamesWithGravitas.XamarinForms.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="GamesWithGravitas.XamarinForms.SkiaSharp, Version=0.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.SkiaSharp.0.0.7\lib\netstandard1.4\GamesWithGravitas.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="SkiaSharp, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
@@ -103,12 +109,6 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.270\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="GamesWithGravitas.XamarinForms.Layout">
-      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.Layout.0.0.3\lib\netstandard1.4\GamesWithGravitas.XamarinForms.Layout.dll</HintPath>
-    </Reference>
-    <Reference Include="GamesWithGravitas.XamarinForms.SkiaSharp">
-      <HintPath>..\..\packages\GamesWithGravitas.XamarinForms.SkiaSharp.0.0.4\lib\netstandard1.4\GamesWithGravitas.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
