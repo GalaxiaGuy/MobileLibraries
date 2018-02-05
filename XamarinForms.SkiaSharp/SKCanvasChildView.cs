@@ -63,19 +63,14 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             {
                 return;
             }
-            if (CanvasContentView == null)
-            {
-                if (propertyName == WidthProperty.PropertyName ||
-                    propertyName == HeightProperty.PropertyName)
-                {
-                    FindParentCanvasContentView();
-                }
-            }
-            if (propertyName == XProperty.PropertyName ||
+            if (propertyName == WidthProperty.PropertyName ||
+                propertyName == HeightProperty.PropertyName ||
+                propertyName == XProperty.PropertyName ||
                 propertyName == YProperty.PropertyName)
             {
                 FindParentCanvasContentView();
             }
+            CanvasView.InvalidateSurface();
         }
 
         public SKCanvasContentView CanvasContentView { get; private set; }
