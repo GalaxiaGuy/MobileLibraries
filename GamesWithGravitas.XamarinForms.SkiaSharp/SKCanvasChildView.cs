@@ -70,7 +70,7 @@ namespace GamesWithGravitas.XamarinForms.SkiaSharp
             {
                 FindParentCanvasContentView();
             }
-            CanvasView.InvalidateSurface();
+            CanvasView?.InvalidateSurface();
         }
 
         public SKCanvasContentView CanvasContentView { get; private set; }

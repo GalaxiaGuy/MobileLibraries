@@ -128,11 +128,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\XamarinForms.Layout\XamarinForms.Layout.csproj">
       <Project>{8CEC693F-CE2C-45A8-8C8C-72635BD56151}</Project>
-      <Name>XamarinForms.Layout</Name>
+      <Name>GamesWithGravitas.XamarinForms.Layout</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj">
       <Project>{29CB75BD-63CB-4EF5-ABEA-9D40ED55E74D}</Project>
-      <Name>XamarinForms.SkiaSharp</Name>
+      <Name>GamesWithGravitas.XamarinForms.SkiaSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

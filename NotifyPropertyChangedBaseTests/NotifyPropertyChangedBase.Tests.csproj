@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NotifyPropertyChangedBase\NotifyPropertyChangedBase.csproj" />
+    <ProjectReference Include="..\GamesWithGravitas.NotifyPropertyChangedBase\GamesWithGravitas.NotifyPropertyChangedBase.csproj" />
   </ItemGroup>
 
 </Project>

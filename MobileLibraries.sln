@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyPropertyChangedBase", "NotifyPropertyChangedBase\NotifyPropertyChangedBase.csproj", "{8749F49B-7D4F-4C07-9E98-D6D2E03BEF04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesWithGravitas.NotifyPropertyChangedBase", "GamesWithGravitas.NotifyPropertyChangedBase\GamesWithGravitas.NotifyPropertyChangedBase.csproj", "{8749F49B-7D4F-4C07-9E98-D6D2E03BEF04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyPropertyChangedBase.Tests", "NotifyPropertyChangedBaseTests\NotifyPropertyChangedBase.Tests.csproj", "{61AFD33B-1B27-4940-A48C-32DAC4FC30DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.Layout", "XamarinForms.Layout\XamarinForms.Layout.csproj", "{8CEC693F-CE2C-45A8-8C8C-72635BD56151}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesWithGravitas.XamarinForms.Layout", "GamesWithGravitas.XamarinForms.Layout\GamesWithGravitas.XamarinForms.Layout.csproj", "{8CEC693F-CE2C-45A8-8C8C-72635BD56151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.SkiaSharp", "XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj", "{29CB75BD-63CB-4EF5-ABEA-9D40ED55E74D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesWithGravitas.XamarinForms.SkiaSharp", "GamesWithGravitas.XamarinForms.SkiaSharp\GamesWithGravitas.XamarinForms.SkiaSharp.csproj", "{29CB75BD-63CB-4EF5-ABEA-9D40ED55E74D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.Sample.Android", "XamarinForms.Sample\XamarinForms.Sample.Android\XamarinForms.Sample.Android.csproj", "{00341502-71D7-4398-ABD7-EF9FF5DCAE1F}"
 EndProject
