@@ -8,13 +8,13 @@ namespace GamesWithGravitas.XamarinForms.Layout
     public class Layout
     {
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.CreateAttached("ItemsSource", typeof(IEnumerable), typeof(ItemsView<View>), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
+            BindableProperty.CreateAttached("ItemsSource", typeof(IEnumerable), typeof(Layout), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
 
         public static readonly BindableProperty ItemTemplateProperty =
-            BindableProperty.CreateAttached("ItemTemplate", typeof(DataTemplate), typeof(ItemsView<View>), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
+            BindableProperty.CreateAttached("ItemTemplate", typeof(DataTemplate), typeof(Layout), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
 
         public static readonly BindableProperty SeparatorTemplateProperty =
-            BindableProperty.CreateAttached("SeparatorTemplate", typeof(DataTemplate), typeof(ItemsView<View>), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
+            BindableProperty.CreateAttached("SeparatorTemplate", typeof(DataTemplate), typeof(Layout), null, propertyChanged: (bindable, oldValue, newValue) => UpdateChildren((Layout<View>)bindable));
 
         public static IEnumerable GetItemsSource(BindableObject bindable) => (IEnumerable)bindable.GetValue(ItemsSourceProperty);
         public static void SetItemsSource(BindableObject bindable, IEnumerable value) => bindable.SetValue(ItemsSourceProperty, value);
@@ -26,7 +26,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
         public static void SetSeparatorTemplate(BindableObject bindable, DataTemplate value) => bindable.SetValue(SeparatorTemplateProperty, value);
 
         private static readonly BindableProperty CollectionChangedListenerProperty =
-            BindableProperty.CreateAttached("CollectionChangedListener", typeof(CollectionChangedListener), typeof(ItemsView<View>), null, propertyChanging: OnCollectionChangedListenerChanging);
+            BindableProperty.CreateAttached("CollectionChangedListener", typeof(CollectionChangedListener), typeof(Layout), null, propertyChanging: OnCollectionChangedListenerChanging);
 
         private static CollectionChangedListener GetCollectionChangedListener(BindableObject bindable) => (CollectionChangedListener)bindable.GetValue(CollectionChangedListenerProperty);
         private static void SetCollectionChangedListener(BindableObject bindable, CollectionChangedListener value) => bindable.SetValue(CollectionChangedListenerProperty, value);
@@ -49,7 +49,16 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             foreach (var item in items)
             {
-                var child = (View)template.CreateContent();
+                DataTemplate itemTemplate;
+                if (template is DataTemplateSelector selector)
+                {
+                    itemTemplate = selector.SelectTemplate(item, layout);
+                }
+                else
+                {
+                    itemTemplate = template;
+                }
+                var child = (View)itemTemplate.CreateContent();
                 child.BindingContext = item;
                 layout.Children.Add(child);
                 if (hasSeparators)
