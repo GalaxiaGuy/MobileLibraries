@@ -19,8 +19,9 @@ namespace GamesWithGravitas.XamarinForms.Sample
             var shader = SKShader.CreateCompose(sweep, turbulence);
             var paint = new SKPaint() { Shader = shader };
             canvas.DrawPaint(paint);
+            base.Paint(surface, info);
         }
 
-        public void AnimateAsync() => AnimateAsync(3000);
+        public void AnimateAsync() => AnimateAsync(30000);
     }
 }
