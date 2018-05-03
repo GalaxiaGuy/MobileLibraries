@@ -5,6 +5,15 @@ namespace GamesWithGravitas.XamarinForms.Layout
 {
     public class LayerLayout : Layout<View>
     {
+        public static readonly BindableProperty IncludeInvisibleChildrenProperty =
+            BindableProperty.Create(nameof(IncludeInvisibleChildren), typeof(bool), typeof(LayerLayout), true, propertyChanged: (bindable, oldValue, newValue) => ((LayerLayout)bindable).InvalidateLayout());
+
+        public bool IncludeInvisibleChildren
+        {
+            get => (bool)GetValue(IncludeInvisibleChildrenProperty);
+            set => SetValue(IncludeInvisibleChildrenProperty, value);
+        }
+
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
             var width = 0d;
@@ -14,6 +23,10 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             foreach (var child in Children)
             {
+                if (!IncludeInvisibleChildren && !child.IsVisible)
+                {
+                    continue;
+                }
                 var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
                 width = Math.Max(width, sizeRequest.Request.Width);
                 height = Math.Max(height, sizeRequest.Request.Height);
@@ -28,6 +41,10 @@ namespace GamesWithGravitas.XamarinForms.Layout
             var rect = new Rectangle(x, y, width, height);
             foreach(var child in Children)
             {
+                if (!IncludeInvisibleChildren && !child.IsVisible)
+                {
+                    continue;
+                }
                 LayoutChildIntoBoundingRegion(child, rect);
             }
         }

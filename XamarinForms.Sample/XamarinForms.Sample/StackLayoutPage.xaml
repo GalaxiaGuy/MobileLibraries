@@ -34,6 +34,15 @@
                     </DataTemplate>
                 </gl:Layout.ItemTemplate>
             </gl:UniformWrapLayout>
+            <Label Text="LayerLayout" FontSize="24"/>
+            <gl:LayerLayout>
+                <BoxView Color="Red" HeightRequest="100" IsVisible="false"/>
+                <BoxView Color="Blue" HeightRequest="20"/>
+            </gl:LayerLayout>
+            <gl:LayerLayout IncludeInvisibleChildren="false">
+                <BoxView Color="Red" HeightRequest="100" IsVisible="false"/>
+                <BoxView Color="Blue" HeightRequest="20"/>
+            </gl:LayerLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
