@@ -152,15 +152,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NotifyPropertyChangedBase\NotifyPropertyChangedBase.csproj">
+    <ProjectReference Include="..\..\GamesWithGravitas.NotifyPropertyChangedBase\GamesWithGravitas.NotifyPropertyChangedBase.csproj">
       <Project>{8749f49b-7d4f-4c07-9e98-d6d2e03bef04}</Project>
       <Name>NotifyPropertyChangedBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XamarinForms.Layout\XamarinForms.Layout.csproj">
+    <ProjectReference Include="..\..\GamesWithGravitas.XamarinForms.Layout\GamesWithGravitas.XamarinForms.Layout.csproj">
       <Project>{8cec693f-ce2c-45a8-8c8c-72635bd56151}</Project>
       <Name>XamarinForms.Layout</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XamarinForms.SkiaSharp\XamarinForms.SkiaSharp.csproj">
+    <ProjectReference Include="..\..\GamesWithGravitas.XamarinForms.SkiaSharp\GamesWithGravitas.XamarinForms.SkiaSharp.csproj">
       <Project>{29cb75bd-63cb-4ef5-abea-9d40ed55e74d}</Project>
       <Name>XamarinForms.SkiaSharp</Name>
     </ProjectReference>

@@ -43,7 +43,14 @@ namespace GamesWithGravitas.XamarinForms.Layout
             var separatorTemplate = GetSeparatorTemplate(layout);
             var hasSeparators = separatorTemplate != null;
 
-            layout.Children.Clear();
+            try
+            {
+                layout.Children.Clear();
+            }
+            catch (NullReferenceException)
+            {
+
+            }
 
             View separator = null;
 
