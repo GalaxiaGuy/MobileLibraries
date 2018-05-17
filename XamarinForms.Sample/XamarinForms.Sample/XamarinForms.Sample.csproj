@@ -23,6 +23,7 @@
     <None Remove="App.xaml" />
     <None Remove="SkiaPage.xaml" />
     <None Remove="StackLayoutPage.xaml" />
+    <None Remove="WrapLayoutPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,11 +43,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="WrapLayoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\GamesWithGravitas.NotifyPropertyChangedBase\GamesWithGravitas.NotifyPropertyChangedBase.csproj" />
     <ProjectReference Include="..\..\GamesWithGravitas.XamarinForms.Layout\GamesWithGravitas.XamarinForms.Layout.csproj" />
     <ProjectReference Include="..\..\GamesWithGravitas.XamarinForms.SkiaSharp\GamesWithGravitas.XamarinForms.SkiaSharp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="WrapLayoutPage.xaml.cs">
+      <DependentUpon>WrapLayoutPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

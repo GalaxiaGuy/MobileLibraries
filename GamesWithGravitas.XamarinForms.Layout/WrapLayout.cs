@@ -32,24 +32,24 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
             double width = 0;
             double height = 0;
-            double columnWidth = 0;
+            double rowWidth = 0;
             double rowHeight = 0;
 
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
-                if (columnWidth + ColumnSpacing + sizeRequest.Request.Width > widthConstraint)
+                if (rowWidth + ColumnSpacing + sizeRequest.Request.Width > widthConstraint)
                 {
                     height += rowHeight + RowSpacing;
                     rowHeight = sizeRequest.Request.Height;
-                    columnWidth = sizeRequest.Request.Width;
+					rowWidth = sizeRequest.Request.Width;
                 }
                 else
                 {
-                    columnWidth += sizeRequest.Request.Width + ColumnSpacing;
+                    rowWidth += sizeRequest.Request.Width + ColumnSpacing;
                     rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
                 }
-                width = Math.Max(columnWidth, width);
+                width = Math.Max(rowWidth, width);
             }
             height += rowHeight;
 
@@ -66,17 +66,20 @@ namespace GamesWithGravitas.XamarinForms.Layout
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(width, height, MeasureFlags.IncludeMargins);
-                if (rowWidth + ColumnSpacing + sizeRequest.Request.Width > width)
-                {
-                    LayoutRow(rowChildren, x, y, width, rowHeight);
-                    rowChildren.Clear();
-                    y += rowHeight + RowSpacing;
-                    rowWidth = sizeRequest.Request.Width;
-                    rowHeight = sizeRequest.Request.Height;
-                    row++;
-                }
-                rowWidth += sizeRequest.Request.Width + ColumnSpacing;
-                rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
+				if (rowWidth + ColumnSpacing + sizeRequest.Request.Width > width)
+				{
+					LayoutRow(rowChildren, x, y, width, rowHeight);
+					rowChildren.Clear();
+					y += rowHeight + RowSpacing;
+					rowWidth = sizeRequest.Request.Width;
+					rowHeight = sizeRequest.Request.Height;
+					row++;
+				}
+				else
+				{
+					rowWidth += sizeRequest.Request.Width + ColumnSpacing;
+					rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
+				}
                 rowChildren.Add((child, sizeRequest.Request));
             }
             LayoutRow(rowChildren, x, y, width, rowHeight);
