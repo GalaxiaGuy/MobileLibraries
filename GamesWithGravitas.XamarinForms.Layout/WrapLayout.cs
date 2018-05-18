@@ -9,6 +9,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
     {
         public static BindableProperty ColumnSpacingProperty = WrapElement.ColumnSpacingProperty;
         public static BindableProperty RowSpacingProperty = WrapElement.RowSpacingProperty;
+        public static readonly BindableProperty OrientationProperty =
+            BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(WrapLayout), StackOrientation.Horizontal, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
 
         public double ColumnSpacing
         {
@@ -22,6 +24,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
             set => SetValue(RowSpacingProperty, value);
         }
 
+        public StackOrientation Orientation
+        {
+            get => (StackOrientation)GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
+        }
+
         void IWrapElement.InvalidateLayout() => InvalidateLayout();
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
@@ -32,26 +40,51 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
             double width = 0;
             double height = 0;
-            double rowWidth = 0;
-            double rowHeight = 0;
+            double mainAxisSize = 0;
+            double crossAxisSize = 0;
 
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
-                if (rowWidth + ColumnSpacing + sizeRequest.Request.Width > widthConstraint)
+                if (Orientation == StackOrientation.Horizontal)
                 {
-                    height += rowHeight + RowSpacing;
-                    rowHeight = sizeRequest.Request.Height;
-					rowWidth = sizeRequest.Request.Width;
+                    if (mainAxisSize + ColumnSpacing + sizeRequest.Request.Width > widthConstraint)
+                    {
+                        height += crossAxisSize + RowSpacing;
+                        crossAxisSize = sizeRequest.Request.Height;
+                        mainAxisSize = sizeRequest.Request.Width;
+                    }
+                    else
+                    {
+                        mainAxisSize += sizeRequest.Request.Width + ColumnSpacing;
+                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Height);
+                    }
+                    width = Math.Max(mainAxisSize, width);
                 }
                 else
                 {
-                    rowWidth += sizeRequest.Request.Width + ColumnSpacing;
-                    rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
+                    if (mainAxisSize + RowSpacing + sizeRequest.Request.Height > heightConstraint)
+                    {
+                        width += crossAxisSize + ColumnSpacing;
+                        crossAxisSize = sizeRequest.Request.Width;
+                        mainAxisSize = sizeRequest.Request.Height;
+                    }
+                    else
+                    {
+                        mainAxisSize += sizeRequest.Request.Height + RowSpacing;
+                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Width);
+                    }
+                    height = Math.Max(mainAxisSize, height);                    
                 }
-                width = Math.Max(rowWidth, width);
             }
-            height += rowHeight;
+            if (Orientation == StackOrientation.Horizontal)
+            {
+                height += crossAxisSize;
+            }
+            else
+            {
+                width += crossAxisSize;
+            }
 
             var size = new Size(width, height);
             return new SizeRequest(size, size);
@@ -59,30 +92,58 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            List<(View, Size)> rowChildren = new List<(View, Size)>();
-            double rowWidth = 0;
-            double rowHeight = 0;
-            int row = 0;
+            List<(View, Size)> crossAxisChildren = new List<(View, Size)>();
+            double mainAxisSize = 0;
+            double crossAxisSize = 0;
+            int mainAxisIndex = 0;
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(width, height, MeasureFlags.IncludeMargins);
-				if (rowWidth + ColumnSpacing + sizeRequest.Request.Width > width)
-				{
-					LayoutRow(rowChildren, x, y, width, rowHeight);
-					rowChildren.Clear();
-					y += rowHeight + RowSpacing;
-					rowWidth = sizeRequest.Request.Width;
-					rowHeight = sizeRequest.Request.Height;
-					row++;
-				}
-				else
-				{
-					rowWidth += sizeRequest.Request.Width + ColumnSpacing;
-					rowHeight = Math.Max(rowHeight, sizeRequest.Request.Height);
-				}
-                rowChildren.Add((child, sizeRequest.Request));
+                if (Orientation == StackOrientation.Horizontal)
+                {
+                    if (mainAxisSize + ColumnSpacing + sizeRequest.Request.Width > width)
+                    {
+                        LayoutRow(crossAxisChildren, x, y, width, crossAxisSize);
+                        crossAxisChildren.Clear();
+                        y += crossAxisSize + RowSpacing;
+                        mainAxisSize = sizeRequest.Request.Width;
+                        crossAxisSize = sizeRequest.Request.Height;
+                        mainAxisIndex++;
+                    }
+                    else
+                    {
+                        mainAxisSize += sizeRequest.Request.Width + ColumnSpacing;
+                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Height);
+                    }
+                    crossAxisChildren.Add((child, sizeRequest.Request));
+                }
+                else
+                {
+                    if (mainAxisSize + RowSpacing + sizeRequest.Request.Height > height)
+                    {
+                        LayoutColumn(crossAxisChildren, x, y, crossAxisSize, height);
+                        crossAxisChildren.Clear();
+                        x += crossAxisSize + ColumnSpacing;
+                        mainAxisSize = sizeRequest.Request.Height;
+                        crossAxisSize = sizeRequest.Request.Width;
+                        mainAxisIndex++;
+                    }
+                    else
+                    {
+                        mainAxisSize += sizeRequest.Request.Height + RowSpacing;
+                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Width);
+                    }
+                    crossAxisChildren.Add((child, sizeRequest.Request));
+                }
             }
-            LayoutRow(rowChildren, x, y, width, rowHeight);
+            if (Orientation == StackOrientation.Horizontal)
+            {
+                LayoutRow(crossAxisChildren, x, y, width, crossAxisSize);
+            }
+            else
+            {
+                LayoutColumn(crossAxisChildren, x, y, crossAxisSize, height);
+            }
         }
 
         private void LayoutRow(List<(View child, Size size)> children, double x, double y, double width, double height)
@@ -107,6 +168,32 @@ namespace GamesWithGravitas.XamarinForms.Layout
                 {
                     LayoutChildIntoBoundingRegion(child, new Rectangle(x, y, size.Width, height));
                     x += size.Width + ColumnSpacing;
+                }
+            }
+        }
+
+        private void LayoutColumn(List<(View child, Size size)> children, double x, double y, double width, double height)
+        {
+            var minimumHeight = children.Sum(c => c.size.Height);
+            var extraAvailableHeight = height - minimumHeight;
+            var expandingChildren = children.Where(c => c.child.VerticalOptions.Expands);
+            var expandingChlidCount = expandingChildren.Count();
+            var expandingChildHeight = expandingChildren.Sum(c => c.size.Height);
+
+            var spareHeight = width - minimumHeight - (children.Count - 1) * RowSpacing;
+            foreach ((var child, var size) in children)
+            {
+                if (child.VerticalOptions.Expands)
+                {
+                    var expandingChildHeightFraction = size.Height / expandingChildHeight;
+                    var newHeight = size.Height + spareHeight * expandingChildHeightFraction;
+                    LayoutChildIntoBoundingRegion(child, new Rectangle(x, y, width, newHeight));
+                    y += newHeight + RowSpacing;
+                }
+                else
+                {
+                    LayoutChildIntoBoundingRegion(child, new Rectangle(x, y, width, size.Height));
+                    y += size.Height + RowSpacing;
                 }
             }
         }

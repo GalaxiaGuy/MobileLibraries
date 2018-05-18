@@ -5,7 +5,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
     public static class WrapElement
     {
         public static readonly BindableProperty ColumnSpacingProperty = 
-            BindableProperty.Create(nameof(IWrapElement.ColumnSpacing), typeof(double), typeof(WrapElement), Grid.ColumnSpacingProperty.DefaultValue, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
+            BindableProperty.Create(nameof(IWrapElement.RowSpacing), typeof(double), typeof(WrapElement), Grid.ColumnSpacingProperty.DefaultValue, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
 
         public static readonly BindableProperty RowSpacingProperty = 
             BindableProperty.Create(nameof(IWrapElement.RowSpacing), typeof(double), typeof(WrapElement), Grid.RowSpacingProperty.DefaultValue, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
@@ -13,8 +13,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
     public interface IWrapElement
     {
-        double ColumnSpacing { get; set; }
         double RowSpacing { get; set; }
+        double ColumnSpacing { get; set; }
 
         void InvalidateLayout();
     }

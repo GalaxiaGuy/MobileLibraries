@@ -11,13 +11,13 @@ namespace GamesWithGravitas.XamarinForms.Layout
         public static readonly BindableProperty ChildMaximumWidthProperty =
             BindableProperty.Create(nameof(ChildMaximumWidth), typeof(double), typeof(UniformWrapLayout), double.PositiveInfinity);
 
-        public double ColumnSpacing
+        public double RowSpacing
         {
             get => (double)GetValue(ColumnSpacingProperty);
             set => SetValue(ColumnSpacingProperty, value);
         }
 
-        public double RowSpacing
+        public double ColumnSpacing
         {
             get => (double)GetValue(RowSpacingProperty);
             set => SetValue(RowSpacingProperty, value);
@@ -59,12 +59,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
             double cumulativeWidth = columnWidth;
             while (columnCount < Children.Count)
             {
-                if (cumulativeWidth + columnWidth + ColumnSpacing > widthConstraint)
+                if (cumulativeWidth + columnWidth + RowSpacing > widthConstraint)
                 {
                     break;
                 }
                 columnCount++;
-                cumulativeWidth += columnWidth + ColumnSpacing;
+                cumulativeWidth += columnWidth + RowSpacing;
             }
             _columnCount = columnCount;
             var rowCount = Children.Count / _columnCount;
@@ -77,7 +77,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
             _rowHeight = rowHeight;
             _rowCount = rowCount;
 
-            var size = new Size(_columnWidth * _columnCount + (_columnCount - 1) * ColumnSpacing, _rowHeight * rowCount + (rowCount - 1) * RowSpacing);
+            var size = new Size(_columnWidth * _columnCount + (_columnCount - 1) * RowSpacing, _rowHeight * rowCount + (rowCount - 1) * RowSpacing);
             return new SizeRequest(size, size);
         }
 
@@ -85,13 +85,13 @@ namespace GamesWithGravitas.XamarinForms.Layout
         {
             int row = 0;
             int column = 0;
-            var totalColumnSpacing = (_columnCount - 1) * ColumnSpacing;
+            var totalColumnSpacing = (_columnCount - 1) * RowSpacing;
             var totalRowSpacing = (_rowCount - 1) * RowSpacing;
             var columnWidth = (width - totalColumnSpacing) / _columnCount;
             var rowHeight = (height - totalRowSpacing) / _rowCount;
             foreach (var child in Children)
             {
-                var childX = column * columnWidth + column  * ColumnSpacing;
+                var childX = column * columnWidth + column  * RowSpacing;
                 var childY = row * _rowHeight + row * RowSpacing;
                 LayoutChildIntoBoundingRegion(child, new Rectangle(x+childX, y+childY, columnWidth, rowHeight));
                 column++;
