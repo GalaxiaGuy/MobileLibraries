@@ -102,57 +102,66 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
+            List<CrossAxisItem> crossAxisItems = new List<CrossAxisItem>();
             List<SizedView> crossAxisChildren = new List<SizedView>();
-            double mainAxisSize = 0;
-            double crossAxisSize = 0;
+            double mainAxisLength = 0;
+            double crossAxisLength = 0;
             int mainAxisIndex = 0;
             foreach (var child in Children)
             {
                 var sizeRequest = child.Measure(width, height, MeasureFlags.IncludeMargins);
                 if (Orientation == StackOrientation.Horizontal)
                 {
-                    if (mainAxisSize + ColumnSpacing + sizeRequest.Request.Width > width)
+                    if (mainAxisLength + ColumnSpacing + sizeRequest.Request.Width > width)
                     {
-                        LayoutRow(crossAxisChildren, x, y, width, crossAxisSize);
-                        crossAxisChildren.Clear();
-                        y += crossAxisSize + RowSpacing;
-                        mainAxisSize = sizeRequest.Request.Width;
-                        crossAxisSize = sizeRequest.Request.Height;
+                        crossAxisItems.Add(new CrossAxisItem { Children = crossAxisChildren, X = x, Y = y, MainAxisLength = width, CrossAxisLength = crossAxisLength });
+                        crossAxisChildren = new List<SizedView>();
+                        y += crossAxisLength + RowSpacing;
+                        mainAxisLength = sizeRequest.Request.Width;
+                        crossAxisLength = sizeRequest.Request.Height;
                         mainAxisIndex++;
                     }
                     else
                     {
-                        mainAxisSize += sizeRequest.Request.Width + ColumnSpacing;
-                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Height);
+                        mainAxisLength += sizeRequest.Request.Width + ColumnSpacing;
+                        crossAxisLength = Math.Max(crossAxisLength, sizeRequest.Request.Height);
                     }
                     crossAxisChildren.Add(new SizedView(child, sizeRequest.Request));
                 }
                 else
                 {
-                    if (mainAxisSize + RowSpacing + sizeRequest.Request.Height > height)
+                    if (mainAxisLength + RowSpacing + sizeRequest.Request.Height > height)
                     {
-                        LayoutColumn(crossAxisChildren, x, y, crossAxisSize, height);
-                        crossAxisChildren.Clear();
-                        x += crossAxisSize + ColumnSpacing;
-                        mainAxisSize = sizeRequest.Request.Height;
-                        crossAxisSize = sizeRequest.Request.Width;
+                        crossAxisItems.Add(new CrossAxisItem { Children = crossAxisChildren, X = x, Y = y, MainAxisLength = height, CrossAxisLength = crossAxisLength });
+                        crossAxisChildren = new List<SizedView>();
+                        x += crossAxisLength + ColumnSpacing;
+                        mainAxisLength = sizeRequest.Request.Height;
+                        crossAxisLength = sizeRequest.Request.Width;
                         mainAxisIndex++;
                     }
                     else
                     {
-                        mainAxisSize += sizeRequest.Request.Height + RowSpacing;
-                        crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Width);
+                        mainAxisLength += sizeRequest.Request.Height + RowSpacing;
+                        crossAxisLength = Math.Max(crossAxisLength, sizeRequest.Request.Width);
                     }
                     crossAxisChildren.Add(new SizedView(child, sizeRequest.Request));
                 }
             }
             if (Orientation == StackOrientation.Horizontal)
             {
-                LayoutRow(crossAxisChildren, x, y, width, crossAxisSize);
+                crossAxisItems.Add(new CrossAxisItem { Children = crossAxisChildren, X = x, Y = y, MainAxisLength = width, CrossAxisLength = crossAxisLength });
+                foreach (var item in crossAxisItems)
+                {
+                    LayoutRow(item);
+                }
             }
             else
             {
-                LayoutColumn(crossAxisChildren, x, y, crossAxisSize, height);
+                crossAxisItems.Add(new CrossAxisItem { Children = crossAxisChildren, X = x, Y = y, MainAxisLength = height, CrossAxisLength = crossAxisLength });
+                foreach (var item in crossAxisItems)
+                {
+                    LayoutColumn(item);
+                }
             }
         }
 
@@ -165,6 +174,16 @@ namespace GamesWithGravitas.XamarinForms.Layout
             public double X;
             public double Y;
             public double MainAxisLength;
+            public double CrossAxisLength;
+
+            public void Deconstruct(out List<SizedView> children, out double x, out double y, out double mainAxisLength, out double crossAxisLength)
+            {
+                children = Children;
+                x = X;
+                y = Y;
+                mainAxisLength = MainAxisLength;
+                crossAxisLength = CrossAxisLength;
+            }
         }
 
         internal class SizedView
@@ -185,8 +204,10 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
         }
 
-        private void LayoutRow(List<SizedView> children, double x, double y, double width, double height)
+        private void LayoutRow(CrossAxisItem item)
         {
+            var (children, x, y, width, height) = item;
+
             var minimumWidth = children.Sum(c => c.Size.Width);
             var extraAvailableWidth = width - minimumWidth;
             var expandingChildren = children.Where(c => c.View.HorizontalOptions.Expands);
@@ -211,8 +232,10 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
         }
 
-        private void LayoutColumn(List<SizedView> children, double x, double y, double width, double height)
+        private void LayoutColumn(CrossAxisItem item)
         {
+            var (children, x, y, height, width) = item;
+
             var minimumHeight = children.Sum(c => c.Size.Height);
             var extraAvailableHeight = height - minimumHeight;
             var expandingChildren = children.Where(c => c.View.VerticalOptions.Expands);
