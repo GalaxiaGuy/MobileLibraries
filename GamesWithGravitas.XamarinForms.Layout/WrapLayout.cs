@@ -9,8 +9,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
     {
         public static BindableProperty ColumnSpacingProperty = WrapElement.ColumnSpacingProperty;
         public static BindableProperty RowSpacingProperty = WrapElement.RowSpacingProperty;
+
         public static readonly BindableProperty OrientationProperty =
             BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(WrapLayout), StackOrientation.Horizontal, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
+
+        public static readonly BindableProperty TryDistributeProperty =
+            BindableProperty.Create(nameof(TryDistribute), typeof(bool), typeof(WrapLayout), false, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
 
         public double ColumnSpacing
         {
@@ -28,6 +32,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
         {
             get => (StackOrientation)GetValue(OrientationProperty);
             set => SetValue(OrientationProperty, value);
+        }
+
+        public bool TryDistribute
+        {
+            get => (bool)GetValue(TryDistributeProperty);
+            set => SetValue(TryDistributeProperty, value);
         }
 
         void IWrapElement.InvalidateLayout() => InvalidateLayout();
@@ -74,7 +84,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
                         mainAxisSize += sizeRequest.Request.Height + RowSpacing;
                         crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Width);
                     }
-                    height = Math.Max(mainAxisSize, height);                    
+                    height = Math.Max(mainAxisSize, height);
                 }
             }
             if (Orientation == StackOrientation.Horizontal)
@@ -92,7 +102,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            List<(View, Size)> crossAxisChildren = new List<(View, Size)>();
+            List<SizedView> crossAxisChildren = new List<SizedView>();
             double mainAxisSize = 0;
             double crossAxisSize = 0;
             int mainAxisIndex = 0;
@@ -115,7 +125,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
                         mainAxisSize += sizeRequest.Request.Width + ColumnSpacing;
                         crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Height);
                     }
-                    crossAxisChildren.Add((child, sizeRequest.Request));
+                    crossAxisChildren.Add(new SizedView(child, sizeRequest.Request));
                 }
                 else
                 {
@@ -133,7 +143,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
                         mainAxisSize += sizeRequest.Request.Height + RowSpacing;
                         crossAxisSize = Math.Max(crossAxisSize, sizeRequest.Request.Width);
                     }
-                    crossAxisChildren.Add((child, sizeRequest.Request));
+                    crossAxisChildren.Add(new SizedView(child, sizeRequest.Request));
                 }
             }
             if (Orientation == StackOrientation.Horizontal)
@@ -146,13 +156,42 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
         }
 
-        private void LayoutRow(List<(View child, Size size)> children, double x, double y, double width, double height)
+        /// <summary>
+        /// A row when vertical, a column when horizontal
+        /// </summary>
+        internal class CrossAxisItem
         {
-            var minimumWidth = children.Sum(c => c.size.Width);
+            public List<SizedView> Children;
+            public double X;
+            public double Y;
+            public double MainAxisLength;
+        }
+
+        internal class SizedView
+        {
+            public View View;
+            public Size Size;
+
+            public SizedView(View view, Size size)
+            {
+                View = view;
+                Size = size;
+            }
+
+            public void Deconstruct(out View view, out Size size)
+            {
+                view = View;
+                size = Size;
+            }
+        }
+
+        private void LayoutRow(List<SizedView> children, double x, double y, double width, double height)
+        {
+            var minimumWidth = children.Sum(c => c.Size.Width);
             var extraAvailableWidth = width - minimumWidth;
-            var expandingChildren = children.Where(c => c.child.HorizontalOptions.Expands);
+            var expandingChildren = children.Where(c => c.View.HorizontalOptions.Expands);
             var expandingChlidCount = expandingChildren.Count();
-            var expandingChildWidth = expandingChildren.Sum(c => c.size.Width);
+            var expandingChildWidth = expandingChildren.Sum(c => c.Size.Width);
 
             var spareWidth = width - minimumWidth - (children.Count - 1) * ColumnSpacing;
             foreach ((var child, var size) in children)
@@ -172,13 +211,13 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
         }
 
-        private void LayoutColumn(List<(View child, Size size)> children, double x, double y, double width, double height)
+        private void LayoutColumn(List<SizedView> children, double x, double y, double width, double height)
         {
-            var minimumHeight = children.Sum(c => c.size.Height);
+            var minimumHeight = children.Sum(c => c.Size.Height);
             var extraAvailableHeight = height - minimumHeight;
-            var expandingChildren = children.Where(c => c.child.VerticalOptions.Expands);
+            var expandingChildren = children.Where(c => c.View.VerticalOptions.Expands);
             var expandingChlidCount = expandingChildren.Count();
-            var expandingChildHeight = expandingChildren.Sum(c => c.size.Height);
+            var expandingChildHeight = expandingChildren.Sum(c => c.Size.Height);
 
             var spareHeight = width - minimumHeight - (children.Count - 1) * RowSpacing;
             foreach ((var child, var size) in children)
