@@ -8,25 +8,30 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <gl:WrapLayout BackgroundColor="Yellow" ColumnSpacing="20" Padding="30">
-            <BoxView BackgroundColor="Red" WidthRequest="50"/>
-            <BoxView BackgroundColor="Red" WidthRequest="100"/>
-            <BoxView BackgroundColor="Red" WidthRequest="50"/>
-            <BoxView BackgroundColor="Red" WidthRequest="100"/>
-            <BoxView BackgroundColor="Red" WidthRequest="50"/>
-            <BoxView BackgroundColor="Red" WidthRequest="100"/>
-            <BoxView BackgroundColor="Red" WidthRequest="50"/>
-            <BoxView BackgroundColor="Red" WidthRequest="100"/>
+        <gl:WrapLayout BackgroundColor="Yellow" ColumnSpacing="5" RowSpacing="5" Padding="5">
+            <BoxView BackgroundColor="Red" WidthRequest="50" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="50" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="20" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="50" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="20" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="50" HorizontalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
         </gl:WrapLayout>      
-        <gl:WrapLayout Grid.Column="1" Orientation="Vertical" BackgroundColor="Yellow" RowSpacing="20" Padding="30">
-            <BoxView BackgroundColor="Red" HeightRequest="50"/>
-            <BoxView BackgroundColor="Red" HeightRequest="100"/>
-            <BoxView BackgroundColor="Red" HeightRequest="50"/>
-            <BoxView BackgroundColor="Red" HeightRequest="100"/>
-            <BoxView BackgroundColor="Red" HeightRequest="50"/>
-            <BoxView BackgroundColor="Red" HeightRequest="100"/>
-            <BoxView BackgroundColor="Red" HeightRequest="50"/>
-            <BoxView BackgroundColor="Red" HeightRequest="100"/>
+        <gl:WrapLayout Grid.Column="1" Orientation="Vertical" Distribute="true" BackgroundColor="Yellow" ColumnSpacing="5" RowSpacing="5" Padding="5">
+            <BoxView BackgroundColor="Red" HeightRequest="20" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="50" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="100" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="50" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="20" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="100" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="50" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="100" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="50" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="20" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Red" HeightRequest="100" VerticalOptions="FillAndExpand"/>
         </gl:WrapLayout> 
     </Grid>
 </ContentPage>
