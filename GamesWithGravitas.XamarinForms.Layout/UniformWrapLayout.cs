@@ -35,6 +35,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
         private double _rowHeight;
         private int _columnCount;
         private int _rowCount;
+        private double _lastMeasuredMinWidth;
+        private double _lastMeasuredMaxWidth;
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
@@ -59,12 +61,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
             double cumulativeWidth = columnWidth;
             while (columnCount < Children.Count)
             {
-                if (cumulativeWidth + columnWidth + RowSpacing > widthConstraint)
+                if (cumulativeWidth + columnWidth + ColumnSpacing > widthConstraint)
                 {
                     break;
                 }
                 columnCount++;
-                cumulativeWidth += columnWidth + RowSpacing;
+                cumulativeWidth += columnWidth + ColumnSpacing;
             }
             _columnCount = columnCount;
             var rowCount = Children.Count / _columnCount;
@@ -76,6 +78,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
             _columnWidth = columnWidth;
             _rowHeight = rowHeight;
             _rowCount = rowCount;
+            _lastMeasuredMinWidth = cumulativeWidth;
+            _lastMeasuredMaxWidth = cumulativeWidth + columnWidth + ColumnSpacing;
 
             var size = new Size(_columnWidth * _columnCount + (_columnCount - 1) * RowSpacing, _rowHeight * rowCount + (rowCount - 1) * RowSpacing);
             return new SizeRequest(size, size);
@@ -83,6 +87,15 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
+            if (width < _lastMeasuredMinWidth || width > _lastMeasuredMaxWidth)
+            {
+                OnMeasure(width, height);
+            }
+            if (_columnCount == 0 && _rowCount == 0)
+            {
+                _rowCount = 1;
+                _columnCount = Children.Count;
+            }
             int row = 0;
             int column = 0;
             var totalColumnSpacing = (_columnCount - 1) * RowSpacing;
