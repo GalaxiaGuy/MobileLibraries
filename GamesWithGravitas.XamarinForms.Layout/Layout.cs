@@ -56,16 +56,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             foreach (var item in items)
             {
-                DataTemplate itemTemplate;
-                if (template is DataTemplateSelector selector)
-                {
-                    itemTemplate = selector.SelectTemplate(item, layout);
-                }
-                else
-                {
-                    itemTemplate = template;
-                }
-                var child = (View)itemTemplate.CreateContent();
+                var child = (View)template.CreateContent(item, layout);
                 child.BindingContext = item;
                 layout.Children.Add(child);
                 if (hasSeparators)
@@ -134,7 +125,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
                     case NotifyCollectionChangedAction.Add:
                         for(int i=0; i<e.NewItems.Count; i++)
                         {
-                            var view = (View)template.CreateContent();
+                            var view = (View)template.CreateContent(e.NewItems[i], layout);
                             view.BindingContext = e.NewItems[i];
                             layout.Children.Insert(e.NewStartingIndex + i, view);
                         }
