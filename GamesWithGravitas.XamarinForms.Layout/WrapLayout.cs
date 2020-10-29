@@ -16,6 +16,9 @@ namespace GamesWithGravitas.XamarinForms.Layout
         public static readonly BindableProperty DistributeProperty =
             BindableProperty.Create(nameof(Distribute), typeof(bool), typeof(WrapLayout), false, propertyChanged: (bindable, oldValue, newValue) => ((IWrapElement)bindable).InvalidateLayout());
 
+        public static readonly BindableProperty IncludeInvisibleChildrenProperty =
+            BindableProperty.Create(nameof(IncludeInvisibleChildren), typeof(bool), typeof(WrapLayout), true, propertyChanged: (bindable, oldValue, newValue) => ((WrapLayout)bindable).InvalidateLayout());
+
         public double ColumnSpacing
         {
             get => (double)GetValue(ColumnSpacingProperty);
@@ -40,6 +43,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
             set => SetValue(DistributeProperty, value);
         }
 
+        public bool IncludeInvisibleChildren
+        {
+            get => (bool)GetValue(IncludeInvisibleChildrenProperty);
+            set => SetValue(IncludeInvisibleChildrenProperty, value);
+        }
+
         void IWrapElement.InvalidateLayout() => InvalidateLayout();
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
@@ -55,6 +64,11 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             foreach (var child in Children)
             {
+                if (!IncludeInvisibleChildren && !child.IsVisible)
+                {
+                    continue;
+                }
+
                 var sizeRequest = child.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
                 if (Orientation == StackOrientation.Horizontal)
                 {
@@ -109,6 +123,11 @@ namespace GamesWithGravitas.XamarinForms.Layout
             int mainAxisIndex = 0;
             foreach (var child in Children)
             {
+                if (!IncludeInvisibleChildren && !child.IsVisible)
+                {
+                    continue;
+                }
+
                 var sizeRequest = child.Measure(width, height, MeasureFlags.IncludeMargins);
                 if (Orientation == StackOrientation.Horizontal)
                 {
