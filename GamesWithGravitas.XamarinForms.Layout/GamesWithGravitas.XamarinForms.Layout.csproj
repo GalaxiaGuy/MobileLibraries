@@ -1,36 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFrameworks>netstandard1.4;netstandard2.0</TargetFrameworks>
     <RootNamespace>GamesWithGravitas.XamarinForms.Layout</RootNamespace>
     <AssemblyName>GamesWithGravitas.XamarinForms.Layout</AssemblyName>
-    <PackageTargetFallback>
-      portable45-net45+win8+wpa81
-    </PackageTargetFallback>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.22</Version>
+    <Version>0.0.24</Version>
     <Authors>Oliver Brown</Authors>
     <Company>Games with Gravitas</Company>
     <Product>GamesWithGravitas Xamarin Forms Layouts</Product>
     <Description>A small collection of layouts for Xamarin Forms.</Description>
     <PackageTags>Xamarin Forms</PackageTags>
-    <AssemblyVersion>0.0.22.0</AssemblyVersion>
-    <FileVersion>0.0.22.0</FileVersion>
+    <AssemblyVersion>0.0.24.0</AssemblyVersion>
+    <FileVersion>0.0.24.0</FileVersion>
     <Copyright>Oliver Brown</Copyright>
     <RepositoryUrl>https://github.com/GalaxiaGuy/MobileLibraries.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIconUrl>https://github.com/GalaxiaGuy/MobileLibraries/blob/master/gwg.png?raw=true</PackageIconUrl>
     <PackageProjectUrl>https://github.com/GalaxiaGuy/MobileLibraries</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/GalaxiaGuy/MobileLibraries/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>gwg.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
-    <PackageReference Include="Xamarin.Forms" Version="2.3.4.270" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />
   </ItemGroup>
 
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard1.')) ">
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <None Include="gwg.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+    
 </Project>
