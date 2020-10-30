@@ -20,6 +20,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>gwg.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="gwg.png" Pack="true" PackagePath=""/>
+    <None Include="gwg.png" Pack="true" PackagePath="" />
   </ItemGroup>
     
 </Project>

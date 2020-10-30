@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GamesWithGravitas.Extensions
 {
@@ -22,7 +21,7 @@ namespace GamesWithGravitas.Extensions
                 Results = properties.ToDictionary(x => x, x => false);
             }
 
-            private List<INotifyPropertyChanged> _targets = new List<INotifyPropertyChanged>();
+            private readonly List<INotifyPropertyChanged> _targets = new List<INotifyPropertyChanged>();
 
             public Dictionary<string, bool> Results;
 

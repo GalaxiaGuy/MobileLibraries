@@ -11,7 +11,7 @@ namespace GamesWithGravitas
 	{
 
 <# foreach (var type in types) { #>
-	    protected bool SetProperty(ref <#=type#> field, <#=type#> value, [CallerMemberName] string whichProperty = null, params string[] otherProperties)
+	    protected bool SetProperty(ref <#=type#> field, <#=type#> value, [CallerMemberName] string whichProperty = "", params string[] otherProperties)
         {
             if (field == value)
             {

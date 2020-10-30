@@ -323,7 +323,11 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
                 while (true)
                 {
-                    var candidate = thisItem.Children?.LastOrDefault();
+                    if (thisItem.Children == null)
+                    {
+                        break;
+                    }
+                    var candidate = thisItem.Children.LastOrDefault();
                     if (candidate == null)
                     {
                         break;

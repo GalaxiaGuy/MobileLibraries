@@ -6,7 +6,7 @@ namespace GamesWithGravitas
 {
     public partial class NotifyPropertyChangedBase : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -25,7 +25,8 @@ namespace GamesWithGravitas
             }
         }
 
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string whichProperty = null, params string[] otherProperties) where T : class
+        protected bool SetProperty<T>(ref T? field, T? value, [CallerMemberName] string whichProperty = "", params string[] otherProperties)
+            where T : class
         {
             if (field == null && value == null)
             {
@@ -41,7 +42,8 @@ namespace GamesWithGravitas
             return true;
         }
 
-        protected bool SetEnumProperty<T>(ref T field, T value, [CallerMemberName] string whichProperty = null, params string[] otherProperties)
+        protected bool SetEnumProperty<T>(ref T field, T value, [CallerMemberName] string whichProperty = "", params string[] otherProperties)
+            where T : Enum
         {
             if (field.Equals(value))
             {
@@ -53,7 +55,7 @@ namespace GamesWithGravitas
             return true;
         }
 
-        protected bool SetProperty<T1, T2, T3, T4, T5, T6, T7, TRest>(ref ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> field, ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> value, [CallerMemberName] string whichProperty = null, params string[] otherProperties) where TRest : struct
+        protected bool SetProperty<T1, T2, T3, T4, T5, T6, T7, TRest>(ref ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> field, ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> value, [CallerMemberName] string whichProperty = "", params string[] otherProperties) where TRest : struct
         {
             if (field.Equals(value))
             {

@@ -18,8 +18,10 @@
     <PackageProjectUrl>https://github.com/GalaxiaGuy/MobileLibraries</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>gwg.png</PackageIcon>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>        
   </PropertyGroup>
-  
+
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard1.')) ">
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
@@ -27,11 +29,13 @@
   <ItemGroup>
     <None Update="NotifyPropertyChangedBase.ValueTuples.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NotifyPropertyChangedBase.ValueTuples.cs</LastGenOutput>
     </None>
     <None Update="NotifyPropertyChangedBase.ValueTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NotifyPropertyChangedBase.ValueTypes.cs</LastGenOutput>
     </None>
-    <None Include="gwg.png" Pack="true" PackagePath=""/>
+    <None Include="gwg.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
