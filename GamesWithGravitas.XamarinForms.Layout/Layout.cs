@@ -52,14 +52,14 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             }
 
-            View separator = null;
+            View? separator = null;
 
             foreach (var item in items)
             {
                 var child = (View)template.CreateContent(item, layout);
                 child.BindingContext = item;
                 layout.Children.Add(child);
-                if (hasSeparators)
+                if (hasSeparators && separatorTemplate != null)
                 {
                     separator = (View)separatorTemplate.CreateContent();
                     layout.Children.Add(separator);
@@ -85,7 +85,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
         private class CollectionChangedListener : IDisposable
         {
             private readonly WeakReference<Layout<View>> _layoutReference;
-            private WeakReference<INotifyCollectionChanged> _collectionReference;
+            private WeakReference<INotifyCollectionChanged>? _collectionReference;
 
             public CollectionChangedListener(Layout<View> layout, INotifyCollectionChanged collection)
             {
@@ -93,9 +93,9 @@ namespace GamesWithGravitas.XamarinForms.Layout
                 SetupCollectionChanged(collection);
             }
 
-            private void SetupCollectionChanged(INotifyCollectionChanged collection)
+            private void SetupCollectionChanged(INotifyCollectionChanged? collection)
             {
-                INotifyCollectionChanged oldCollection = null;
+                INotifyCollectionChanged? oldCollection = null;
                 _collectionReference?.TryGetTarget(out oldCollection);
                 if (oldCollection != null)
                 {
@@ -104,8 +104,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
                 if (collection != null)
                 {
                     collection.CollectionChanged += OnItemsSourceCollectionChanged;
+                    _collectionReference = new WeakReference<INotifyCollectionChanged>(collection);
                 }
-                _collectionReference = new WeakReference<INotifyCollectionChanged>(collection);
             }
 
             private void OnItemsSourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -148,7 +148,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
             public void Dispose()
             {
-                INotifyCollectionChanged collection = null;
+                INotifyCollectionChanged? collection = null;
                 _collectionReference?.TryGetTarget(out collection);
                 if (collection != null)
                 {
