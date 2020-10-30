@@ -231,22 +231,22 @@ namespace GamesWithGravitas
 
     public class Notifier : NotifyPropertyChangedBase
     {
-        private string _stringProperty;
-        public string StringProperty
+        private string? _stringProperty;
+        public string? StringProperty
         {
             get => _stringProperty;
             set => SetProperty(ref _stringProperty, value);
         }
 
-        private object _objectProperty;
-        public object ObjectProperty
+        private object? _objectProperty;
+        public object? ObjectProperty
         {
             get => _objectProperty;
             set => SetProperty(ref _objectProperty, value);
         }
 
-        private Dictionary<Guid, IObservable<List<KeyValuePair<string, string>>>> _complexProperty;
-        public Dictionary<Guid, IObservable<List<KeyValuePair<string, string>>>> ComplexProperty
+        private Dictionary<Guid, IObservable<List<KeyValuePair<string, string>>>>? _complexProperty;
+        public Dictionary<Guid, IObservable<List<KeyValuePair<string, string>>>>? ComplexProperty
         {
             get => _complexProperty;
             set => SetProperty(ref _complexProperty, value);
@@ -266,8 +266,8 @@ namespace GamesWithGravitas
             set => SetProperty(ref _intProperty, value);
         }
 
-        private Tuple<string, int> _tupleProperty;
-        public Tuple<string, int> TupleProperty
+        private Tuple<string, int>? _tupleProperty;
+        public Tuple<string, int>? TupleProperty
         {
             get => _tupleProperty;
             set => SetProperty(ref _tupleProperty, value);
@@ -287,15 +287,15 @@ namespace GamesWithGravitas
             set => SetProperty(ref _guidProperty, value);
         }
 
-        private string _dependentProperty;
-        public string DependentProperty
+        private string? _dependentProperty;
+        public string? DependentProperty
         {
             get => _dependentProperty;
             set => SetProperty(ref _dependentProperty, value, otherProperties: nameof(DerivedProperty));
         }
 
-        private string _checkingProperty;
-        public string CheckingProperty
+        private string? _checkingProperty;
+        public string? CheckingProperty
         {
             get => _checkingProperty;
             set

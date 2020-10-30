@@ -25,7 +25,8 @@ namespace GamesWithGravitas
             }
         }
 
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string whichProperty = "", params string[] otherProperties) where T : class
+        protected bool SetProperty<T>(ref T? field, T? value, [CallerMemberName] string whichProperty = "", params string[] otherProperties)
+            where T : class
         {
             if (field == null && value == null)
             {

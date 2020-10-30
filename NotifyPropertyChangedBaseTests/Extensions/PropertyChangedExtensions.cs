@@ -20,8 +20,8 @@ namespace GamesWithGravitas.Extensions
 			notifier.RaisePropertyChanged(propertyName);
 
 			Assert.True(result.AllTrue);
-			Assert.Equal(1, result.Results.Count);
-			Assert.Equal(1, result.Successes.Count());
+			Assert.Single(result.Results);
+			Assert.Single(result.Successes);
 			Assert.Contains(propertyName, result.Results.Keys);
 		}
 
@@ -58,8 +58,8 @@ namespace GamesWithGravitas.Extensions
 			var result = notifier.ListenForPropertyChanged(propertyName);
 
 			Assert.False(result.AllTrue);
-			Assert.Equal(1, result.Results.Count);
-			Assert.Equal(0, result.Successes.Count());
+			Assert.Single(result.Results);
+			Assert.Empty(result.Successes);
 		}
 
         [Theory]
@@ -74,7 +74,7 @@ namespace GamesWithGravitas.Extensions
 
 			Assert.False(result.AllTrue);
 			Assert.Equal(notFiredPropertyNames.Length + 1, result.Results.Count);
-			Assert.Equal(1, result.Successes.Count());
+			Assert.Single(result.Successes);
 			Assert.Contains(firedPropertyName, result.Results.Keys);
 			Assert.Contains(firedPropertyName, result.Successes.ToList());
 			foreach (var propertyName in notFiredPropertyNames)
@@ -94,7 +94,7 @@ namespace GamesWithGravitas.Extensions
 
 			foreach (var propertyName in propertyNames)
 			{
-				Assert.True(result.FailMessage.Contains(propertyName));
+				Assert.Contains(propertyName, result.FailMessage);
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace GamesWithGravitas.Extensions
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 			}
 
-			public event PropertyChangedEventHandler PropertyChanged;
+			public event PropertyChangedEventHandler? PropertyChanged;
 
             public bool IsPropertyChangedNull => PropertyChanged == null;
 		}
