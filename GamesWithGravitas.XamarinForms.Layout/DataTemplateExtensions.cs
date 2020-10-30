@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace GamesWithGravitas.XamarinForms.Layout
 {
@@ -7,11 +6,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
     {
         public static DataTemplate SelectDataTemplate(this DataTemplate self, object item, BindableObject container)
         {
-            var selector = self as DataTemplateSelector;
-            if (selector == null)
-                return self;
-
-            return selector.SelectTemplate(item, container);
+            return !(self is DataTemplateSelector selector) ? self : selector.SelectTemplate(item, container);
         }
 
         public static object CreateContent(this DataTemplate self, object item, BindableObject container)

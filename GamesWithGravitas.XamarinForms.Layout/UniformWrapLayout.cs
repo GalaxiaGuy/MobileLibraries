@@ -70,7 +70,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
             }
             _columnCount = columnCount;
             var rowCount = Children.Count / _columnCount;
-            if ((Children.Count % _columnCount > 0))
+            if (Children.Count % _columnCount > 0)
             {
                 rowCount++;
             }
@@ -104,7 +104,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
             var rowHeight = (height - totalRowSpacing) / _rowCount;
             foreach (var child in Children)
             {
-                var childX = column * columnWidth + column  * RowSpacing;
+                var childX = (column * columnWidth) + (column  * RowSpacing);
                 var childY = row * _rowHeight + row * RowSpacing;
                 LayoutChildIntoBoundingRegion(child, new Rectangle(x+childX, y+childY, columnWidth, rowHeight));
                 column++;

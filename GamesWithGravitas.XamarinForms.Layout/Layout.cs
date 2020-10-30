@@ -84,7 +84,7 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         private class CollectionChangedListener : IDisposable
         {
-            private WeakReference<Layout<View>> _layoutReference;
+            private readonly WeakReference<Layout<View>> _layoutReference;
             private WeakReference<INotifyCollectionChanged> _collectionReference;
 
             public CollectionChangedListener(Layout<View> layout, INotifyCollectionChanged collection)
@@ -117,13 +117,12 @@ namespace GamesWithGravitas.XamarinForms.Layout
                     return;
                 }
 
-                var items = GetItemsSource(layout);
                 var template = GetItemTemplate(layout);
 
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
-                        for(int i=0; i<e.NewItems.Count; i++)
+                        for (int i = 0; i < e.NewItems.Count; i++)
                         {
                             var view = (View)template.CreateContent(e.NewItems[i], layout);
                             view.BindingContext = e.NewItems[i];
@@ -141,6 +140,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
                     case NotifyCollectionChangedAction.Replace:
                         break;
                     case NotifyCollectionChangedAction.Reset:
+                        break;
+                    default:
                         break;
                 }
             }

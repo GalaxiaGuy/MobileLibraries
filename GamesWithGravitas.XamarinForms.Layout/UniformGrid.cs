@@ -25,8 +25,8 @@ namespace GamesWithGravitas.XamarinForms.Layout
 
         public double Spacing
         {
-            get { return (double)GetValue(SpacingProperty); }
-            set { SetValue(SpacingProperty, value); }
+            get => (double)GetValue(SpacingProperty);
+            set => SetValue(SpacingProperty, value);
         }
         public static int GetColumn(BindableObject bindable)
         {
@@ -135,11 +135,9 @@ namespace GamesWithGravitas.XamarinForms.Layout
             var heightBasedOnWidth = widthConstraint * RowCount / ColumnCount;
             var widthBasedOnHeight = heightConstraint * ColumnCount / RowCount;
 
-            if (heightBasedOnWidth < heightConstraint)
-            {
-                return new SizeRequest(new Size(widthConstraint, heightBasedOnWidth));
-            }
-            return new SizeRequest(new Size(widthBasedOnHeight, heightConstraint));
+            return heightBasedOnWidth < heightConstraint
+                ? new SizeRequest(new Size(widthConstraint, heightBasedOnWidth))
+                : new SizeRequest(new Size(widthBasedOnHeight, heightConstraint));
         }
 
         private double _layoutCellSize;
