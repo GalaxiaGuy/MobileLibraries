@@ -122,7 +122,7 @@
       <ExcludeAssets>All</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.3.4.270</Version>
+      <Version>3.0.0.561731</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +131,7 @@
       <Name>GamesWithGravitas.XamarinForms.Layout</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GamesWithGravitas.XamarinForms.SkiaSharp\GamesWithGravitas.XamarinForms.SkiaSharp.csproj">
-      <Project>{29CB75BD-63CB-4EF5-ABEA-9D40ED55E74D}</Project>
+      <Project>{83E0DA12-D255-4118-92EF-0999D3590153}</Project>
       <Name>GamesWithGravitas.XamarinForms.SkiaSharp</Name>
     </ProjectReference>
   </ItemGroup>
@@ -175,7 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinForms.Sample\XamarinForms.Sample.csproj">
-      <Project>{867ECD70-7043-4DB3-8070-9D3A01486879}</Project>
+      <Project>{739024CA-37AC-4E74-9BC3-0607412B6CF1}</Project>
       <Name>XamarinForms.Sample</Name>
     </ProjectReference>
   </ItemGroup>
